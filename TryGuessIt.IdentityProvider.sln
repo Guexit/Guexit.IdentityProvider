@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TryGuessIt.IdentityProvider.WebApi", "src\TryGuessIt.IdentityProvider.WebApi\TryGuessIt.IdentityProvider.WebApi.csproj", "{E0C96815-B842-49D3-94B2-D5A91A7727CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E0C96815-B842-49D3-94B2-D5A91A7727CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0C96815-B842-49D3-94B2-D5A91A7727CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0C96815-B842-49D3-94B2-D5A91A7727CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0C96815-B842-49D3-94B2-D5A91A7727CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D19411C2-678F-411C-BE3C-967C1F3ECD8F}
+	EndGlobalSection
+EndGlobal
