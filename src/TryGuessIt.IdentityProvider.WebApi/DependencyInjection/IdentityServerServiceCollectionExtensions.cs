@@ -8,14 +8,8 @@ public static class IdentityServerServiceCollectionExtensions
     public static IServiceCollection AddIdentityServerAndOperationalData(this IServiceCollection services, IConfiguration configuration)
     {
         return services.AddIdentityServer()
-            .AddConfigurationStore(options =>
-            {
-                options.ConfigureDbContext = builder => builder.UseNpgsql(
-                    configuration.GetConnectionString("TryGuessIt_IdentityProvider_IdentityServerConfiguration"), 
-                    opt => opt.MigrationsAssembly(typeof(IAssemblyMarker).Assembly.FullName));
-
-                options.DefaultSchema = "ConfigurationStore";
-            })
+            .AddInMemoryClients(configuration.GetSection("IdentityServer:Clients"))
+            .AddInMemoryIdentityResources(Config.IdentityResources)
             .AddOperationalStore(options =>
             {
                 options.ConfigureDbContext = builder =>
