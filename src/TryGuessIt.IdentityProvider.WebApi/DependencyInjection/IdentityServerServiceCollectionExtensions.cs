@@ -1,5 +1,7 @@
-﻿using IdentityServerHost;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using TryGuessIt.IdentityProvider.WebApi.Data;
 
 namespace TryGuessIt.IdentityProvider.WebApi.DependencyInjection;
 
@@ -7,7 +9,16 @@ public static class IdentityServerServiceCollectionExtensions
 {
     public static IServiceCollection AddIdentityServerAndOperationalData(this IServiceCollection services, IConfiguration configuration)
     {
-        return services.AddIdentityServer()
+        services.AddDbContext<TryGuessItIdentityDbContext>(options =>
+        {
+            options.UseNpgsql(configuration.GetConnectionString("TryGuessIt_IdentityProvider_IdentityUsers"));
+        });
+
+        services.AddIdentity<IdentityUser, IdentityRole>()
+           .AddEntityFrameworkStores<TryGuessItIdentityDbContext>()
+           .AddDefaultTokenProviders();
+
+        services.AddIdentityServer()
             .AddInMemoryClients(configuration.GetSection("IdentityServer:Clients"))
             .AddInMemoryIdentityResources(Config.IdentityResources)
             .AddOperationalStore(options =>
@@ -21,7 +32,8 @@ public static class IdentityServerServiceCollectionExtensions
                 options.EnableTokenCleanup = true;
                 options.TokenCleanupInterval = 3600;
             })
-            .AddTestUsers(TestUsers.Users)
-            .Services;
+            .AddAspNetIdentity<IdentityUser>();
+
+        return services;
     }
 }
