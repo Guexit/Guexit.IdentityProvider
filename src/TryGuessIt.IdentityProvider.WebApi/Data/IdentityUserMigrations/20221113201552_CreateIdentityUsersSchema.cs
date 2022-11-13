@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace TryGuessIt.IdentityProvider.WebApi.IdentityUserMigrations
+namespace TryGuessIt.IdentityProvider.WebApi.Data.IdentityUserMigrations
 {
     /// <inheritdoc />
     public partial class CreateIdentityUsersSchema : Migration

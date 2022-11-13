@@ -8,7 +8,7 @@ using TryGuessIt.IdentityProvider.WebApi.Data;
 
 #nullable disable
 
-namespace TryGuessIt.IdentityProvider.WebApi.IdentityUserMigrations
+namespace TryGuessIt.IdentityProvider.WebApi.Data.IdentityUserMigrations
 {
     [DbContext(typeof(TryGuessItIdentityDbContext))]
     partial class TryGuessItIdentityDbContextModelSnapshot : ModelSnapshot
