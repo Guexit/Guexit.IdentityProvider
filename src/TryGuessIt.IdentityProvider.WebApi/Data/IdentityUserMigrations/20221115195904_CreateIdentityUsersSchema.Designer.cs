@@ -9,10 +9,10 @@ using TryGuessIt.IdentityProvider.WebApi.Data;
 
 #nullable disable
 
-namespace TryGuessIt.IdentityProvider.WebApi.IdentityUserMigrations
+namespace TryGuessIt.IdentityProvider.WebApi.Data.IdentityUserMigrations
 {
     [DbContext(typeof(TryGuessItIdentityDbContext))]
-    [Migration("20221113201552_CreateIdentityUsersSchema")]
+    [Migration("20221115195904_CreateIdentityUsersSchema")]
     partial class CreateIdentityUsersSchema
     {
         /// <inheritdoc />

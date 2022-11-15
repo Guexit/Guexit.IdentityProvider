@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace TryGuessIt.IdentityProvider.WebApi.Data.OperationalMigrations
+namespace TryGuessIt.IdentityProvider.WebApi.Data.OperationalDataMigrations
 {
     [DbContext(typeof(PersistedGrantDbContext))]
     partial class PersistedGrantDbContextModelSnapshot : ModelSnapshot

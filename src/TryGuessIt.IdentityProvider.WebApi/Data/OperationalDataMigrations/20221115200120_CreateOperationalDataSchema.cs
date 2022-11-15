@@ -4,10 +4,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace TryGuessIt.IdentityProvider.WebApi.Data.OperationalMigrations
+namespace TryGuessIt.IdentityProvider.WebApi.Data.OperationalDataMigrations
 {
     /// <inheritdoc />
-    public partial class CreateIdentityOperationalStoreSchema : Migration
+    public partial class CreateOperationalDataSchema : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -9,11 +9,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace TryGuessIt.IdentityProvider.WebApi.OperationalMigrations
+namespace TryGuessIt.IdentityProvider.WebApi.Data.OperationalDataMigrations
 {
     [DbContext(typeof(PersistedGrantDbContext))]
-    [Migration("20221113192629_CreateIdentityOperationalStoreSchema")]
-    partial class CreateIdentityOperationalStoreSchema
+    [Migration("20221115200120_CreateOperationalDataSchema")]
+    partial class CreateOperationalDataSchema
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
