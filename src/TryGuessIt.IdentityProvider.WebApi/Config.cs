@@ -1,4 +1,5 @@
-﻿using Duende.IdentityServer.Models;
+﻿using Duende.IdentityServer;
+using Duende.IdentityServer.Models;
 
 namespace TryGuessIt.IdentityProvider.WebApi;
 
@@ -9,6 +10,11 @@ public static class Config
         {
             new IdentityResources.OpenId(),
             new IdentityResources.Profile(),
+            new IdentityResources.Email(),
+            new IdentityResource()
+            {
+                Name = IdentityServerConstants.StandardScopes.OfflineAccess
+            }
         };
 
     public static IEnumerable<ApiScope> ApiScopes =>
