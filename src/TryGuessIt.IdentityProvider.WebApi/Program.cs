@@ -1,4 +1,7 @@
 using Duende.IdentityServer;
+using Duende.IdentityServer.Services;
+using Duende.IdentityServer.Stores;
+using Duende.IdentityServer.Validation;
 using TryGuessIt.IdentityProvider.WebApi.DependencyInjection;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -11,6 +14,11 @@ builder.Services.AddIdentityServerAndOperationalData(builder.Configuration);
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
 builder.Services.AddRazorPages();
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy => policy.AllowAnyOrigin());
+});
 
 builder.Services.AddAuthentication()
     .AddGoogle(options =>
@@ -25,7 +33,6 @@ builder.Services.AddAuthentication()
         options.AppId = builder.Configuration.GetSection("Authentication").GetValue<string>("Facebook:ClientId")!;
         options.AppSecret = builder.Configuration.GetSection("Authentication").GetValue<string>("Facebook:ClientSecret")!;
     });
-
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -36,6 +43,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseStaticFiles();
 app.UseRouting();

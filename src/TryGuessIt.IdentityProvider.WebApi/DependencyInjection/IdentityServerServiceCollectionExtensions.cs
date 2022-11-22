@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Duende.IdentityServer.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TryGuessIt.IdentityProvider.WebApi.Data;
 
@@ -9,6 +9,14 @@ public static class IdentityServerServiceCollectionExtensions
 {
     public static IServiceCollection AddIdentityServerAndOperationalData(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddSingleton<ICorsPolicyService>((container) => {
+             var logger = container.GetRequiredService<ILogger<DefaultCorsPolicyService>>();
+             return new DefaultCorsPolicyService(logger)
+             {
+                 AllowAll = true
+             };
+        });
+
         services.AddDbContext<TryGuessItIdentityDbContext>(options =>
         {
             options.UseNpgsql(configuration.GetConnectionString("TryGuessIt_IdentityProvider_IdentityUsers"));
