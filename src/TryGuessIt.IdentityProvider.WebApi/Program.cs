@@ -1,7 +1,4 @@
 using Duende.IdentityServer;
-using Duende.IdentityServer.Services;
-using Duende.IdentityServer.Stores;
-using Duende.IdentityServer.Validation;
 using TryGuessIt.IdentityProvider.WebApi.DependencyInjection;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
