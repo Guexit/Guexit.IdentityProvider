@@ -1,0 +1,5 @@
+dotnet ef migrations add NameOfMigration -p .\src\TryGuessIt.IdentityProvider.Infrastructure.Data\TryGuessIt.IdentityProvider.Infrastructure.Data.csproj -s .\src\TryGuessIt.IdentityProvider.WebApi\TryGuessIt.IdentityProvider.WebApi.csproj -c TryGuessItIdentityDbContext --output-dir ..\TryGuessIt.IdentityProvider.Infrastructure.Data\TryGuessItIdentityMigrations
+dotnet ef migrations add InitialMigration -p .\src\TryGuessIt.IdentityProvider.Infrastructure.Data\TryGuessIt.IdentityProvider.Infrastructure.Data.csproj -s .\src\TryGuessIt.IdentityProvider.WebApi\TryGuessIt.IdentityProvider.WebApi.csproj -c PersistedGrantDbContext --output-dir ..\TryGuessIt.IdentityProvider.Infrastructure.Data\PersistedGrantMigrations
+
+dotnet ef database update -p .\src\TryGuessIt.IdentityProvider.Persistence\ -s .\src\TryGuessIt.IdentityProvider.WebApi\ -c TryGuessItIdentityDbContext
+dotnet ef database update -p .\src\TryGuessIt.IdentityProvider.Persistence\ -s .\src\TryGuessIt.IdentityProvider.WebApi\ -c PersistedGrantDbContext

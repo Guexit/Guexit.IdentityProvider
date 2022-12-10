@@ -1,7 +1,7 @@
 ﻿using Duende.IdentityServer.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using TryGuessIt.IdentityProvider.WebApi.Data;
+using TryGuessIt.IdentityProvider.Persistence;
 
 namespace TryGuessIt.IdentityProvider.WebApi.DependencyInjection;
 
