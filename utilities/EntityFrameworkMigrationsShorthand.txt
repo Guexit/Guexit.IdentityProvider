@@ -3,3 +3,6 @@ dotnet ef migrations add InitialMigration -p .\src\TryGuessIt.IdentityProvider.I
 
 dotnet ef database update -p .\src\TryGuessIt.IdentityProvider.Persistence\ -s .\src\TryGuessIt.IdentityProvider.WebApi\ -c TryGuessItIdentityDbContext
 dotnet ef database update -p .\src\TryGuessIt.IdentityProvider.Persistence\ -s .\src\TryGuessIt.IdentityProvider.WebApi\ -c PersistedGrantDbContext
+
+## Generate EF migrations bundle  
+dotnet ef migrations bundle -p .\src\TryGuessIt.IdentityProvider.Persistence\TryGuessIt.IdentityProvider.Persistence.csproj -s .\src\TryGuessIt.IdentityProvider.WebApi\TryGuessIt.IdentityProvider.WebApi.csproj -c PersistedGrantDbContext -o 'efbundle_PersistedGrantDbContext.exe'
