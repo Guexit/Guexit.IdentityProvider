@@ -21,7 +21,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
 
-  runAcceptanceTests:
+  runDbMigrations:
     needs: build
     runs-on: ubuntu-22.04
 
@@ -35,7 +35,6 @@ jobs:
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-
 
     steps: 
     - uses: actions/checkout@v3
@@ -57,4 +56,4 @@ jobs:
     - name: Execute database migrations
       run: |
         ./efbundle_TryGuessItIdentityDbContext.exe --connection 'User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=tryguessit_identityprovider;'
-      
+        ./efbundle_PersistedGrantDbContext.exe --connection 'User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=tryguessit_identityprovider;'
