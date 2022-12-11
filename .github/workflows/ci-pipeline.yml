@@ -40,7 +40,7 @@ jobs:
       with:
         dotnet-version: '7.0.x'
     - name: Restore NuGet packages
-      run: dotnet restore
+      run: dotnet restore -r 'linux-x64'
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Generate EF migrations bundle
@@ -48,8 +48,8 @@ jobs:
         dotnet tool install --global dotnet-ef
         dotnet tool restore
         cd /home/runner/work/TryGuessIt.IdentityProvider/TryGuessIt.IdentityProvider/
-        dotnet ef migrations bundle -p ./src/TryGuessIt.IdentityProvider.Persistence/TryGuessIt.IdentityProvider.Persistence.csproj -s ./src/TryGuessIt.IdentityProvider.WebApi/TryGuessIt.IdentityProvider.WebApi.csproj -c PersistedGrantDbContext -o 'efbundle_PersistedGrantDbContext.exe'
-        dotnet ef migrations bundle -p ./src/TryGuessIt.IdentityProvider.Persistence/TryGuessIt.IdentityProvider.Persistence.csproj -s ./src/TryGuessIt.IdentityProvider.WebApi/TryGuessIt.IdentityProvider.WebApi.csproj -c TryGuessItIdentityDbContext -o 'efbundle_TryGuessItIdentityDbContext.exe'
+        dotnet ef migrations bundle -p ./src/TryGuessIt.IdentityProvider.Persistence/TryGuessIt.IdentityProvider.Persistence.csproj -s ./src/TryGuessIt.IdentityProvider.WebApi/TryGuessIt.IdentityProvider.WebApi.csproj -c PersistedGrantDbContext -o 'efbundle_PersistedGrantDbContext.exe' --verbose
+        dotnet ef migrations bundle -p ./src/TryGuessIt.IdentityProvider.Persistence/TryGuessIt.IdentityProvider.Persistence.csproj -s ./src/TryGuessIt.IdentityProvider.WebApi/TryGuessIt.IdentityProvider.WebApi.csproj -c TryGuessItIdentityDbContext -o 'efbundle_TryGuessItIdentityDbContext.exe' --verbose
     - name: Execute database migrations
       run: |
         ./efbundle_TryGuessItIdentityDbContext.exe --connection 'User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=tryguessit_identityprovider;'
