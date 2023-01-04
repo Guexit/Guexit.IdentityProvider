@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TryGuessIt.IdentityProvider.Persistence;
+using TryGuessIt.IdentityProvider.WebApi.UserManagement;
 
 namespace TryGuessIt.IdentityProvider.WebApi.DependencyInjection;
 
@@ -24,6 +25,7 @@ public static class IdentityServerServiceCollectionExtensions
 
         services.AddIdentity<IdentityUser, IdentityRole>()
            .AddEntityFrameworkStores<TryGuessItIdentityDbContext>()
+           .AddUserManager<TryGuessItUserManager>()
            .AddDefaultTokenProviders();
 
         services.AddIdentityServer()

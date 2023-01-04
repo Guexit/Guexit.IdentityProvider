@@ -107,8 +107,9 @@ public class RegisterModel : PageModel
         ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         if (ModelState.IsValid)
         {
-            var alreadyExistingUser = await _userManager.FindByEmailAsync(Input.Email);
-            if (alreadyExistingUser is not null)
+            var existingUser = await _userManager.FindByEmailAsync(Input.Email);
+            var emailIsAlreadyTaken = existingUser is not null;
+            if (emailIsAlreadyTaken)
             {
                 ModelState.AddModelError(string.Empty, $"The email '{Input.Email}' is already taken.");
                 return Page();
