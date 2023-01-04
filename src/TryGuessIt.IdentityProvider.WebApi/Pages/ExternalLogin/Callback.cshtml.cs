@@ -64,7 +64,7 @@ public class Callback : PageModel
         var providerUserId = userIdClaim.Value;
 
         // find external user
-        var user = await _userManager.FindByLoginAsync(provider, providerUserId);
+        var user = await _userManager.FindByEmailAsync(externalUser.FindFirst(ClaimTypes.Email)?.Value);
         if (user == null)
         {
             // this might be where you might initiate a custom workflow for user registration
