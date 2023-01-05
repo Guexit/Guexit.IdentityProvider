@@ -17,6 +17,6 @@ public class UserCreatedEventHandler : INotificationHandler<UserCreatedEvent>
     public async ValueTask Handle(UserCreatedEvent @event, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Handling UserCreatedEvent. UserId: '{userId}'", @event.Id);
-        await _bus.Publish(@event, cancellationToken);
+        await _bus.Publish(new UserCreatedIntegrationEvent(@event.Id), cancellationToken);
     }
 }

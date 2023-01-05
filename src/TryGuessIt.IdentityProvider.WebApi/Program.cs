@@ -4,7 +4,7 @@ using TryGuessIt.IdentityProvider.WebApi.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMediator();
-builder.Services.AddMasstransit();
+builder.Services.AddMasstransit(builder.Configuration);
 
 builder.Services.AddIdentityServerAndOperationalData(builder.Configuration);
 
