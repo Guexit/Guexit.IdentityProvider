@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TryGuessIt.IdentityProvider.Messages\TryGuessIt.IdentityProvider.Messages.csproj" />
     <ProjectReference Include="..\TryGuessIt.IdentityProvider.Persistence\TryGuessIt.IdentityProvider.Persistence.csproj" />
   </ItemGroup>
 

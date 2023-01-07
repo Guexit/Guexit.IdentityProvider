@@ -2,11 +2,11 @@
 
 namespace TryGuessIt.IdentityProvider.WebApi.Events;
 
-public sealed class UserCreatedEvent : INotification
+public sealed class UserCreatedDomainEvent : INotification
 {
     public string Id { get; }
 
-	public UserCreatedEvent(string id)
+	public UserCreatedDomainEvent(string id)
 	{
         Id = id;
     }

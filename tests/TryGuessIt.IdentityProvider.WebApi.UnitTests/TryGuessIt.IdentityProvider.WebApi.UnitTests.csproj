@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\TryGuessIt.IdentityProvider.WebApi\TryGuessIt.IdentityProvider.WebApi.csproj" />
+    <ProjectReference Include="..\..\src\TryGuessIt.IdentityProvider.WebApi\TryGuessIt.IdentityProvider.WebApi.csproj" />
   </ItemGroup>
 
 </Project>

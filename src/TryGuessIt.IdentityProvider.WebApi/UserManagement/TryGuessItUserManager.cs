@@ -30,7 +30,7 @@ public sealed class TryGuessItUserManager : UserManager<IdentityUser>
     {
         var identityResult = await base.CreateAsync(user);
         if (identityResult.Succeeded)
-            await _publisher.Publish(new UserCreatedEvent(user.Id));
+            await _publisher.Publish(new UserCreatedDomainEvent(user.Id));
 
         return identityResult;
     }
