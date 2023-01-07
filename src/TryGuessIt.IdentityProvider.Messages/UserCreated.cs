@@ -2,12 +2,9 @@
 
 public class UserCreated
 {
-    public string Id { get; } = default!;
+    public string Id { get; set; } = default!;
 
-    public UserCreated() 
-    {
-        
-    }
+    public UserCreated() { }
 
     public UserCreated(string id)
     {

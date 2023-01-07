@@ -10,6 +10,7 @@ public static class MasstransitServiceCollectionExtensions
         {
             config.SetKebabCaseEndpointNameFormatter();
 
+
             config.AddConsumers(typeof(IAssemblyMarker).Assembly);
             config.UsingAzureServiceBus((context, cfg) =>
             {
