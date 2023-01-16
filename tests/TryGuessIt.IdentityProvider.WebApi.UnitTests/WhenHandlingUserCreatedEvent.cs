@@ -12,7 +12,7 @@ public class WhenHandlingUserCreatedEvent
     [Fact]
     public async Task IsPublished()
     {
-        var userCreated = new UserCreatedDomainEvent(Guid.NewGuid().ToString());
+        var userCreated = new UserCreatedDomainEvent(Guid.NewGuid().ToString(), "username");
         var bus = Substitute.For<IBus>();
         var eventHandler = new UserCreatedEventHandlerForPublish(
             bus,
@@ -22,7 +22,7 @@ public class WhenHandlingUserCreatedEvent
         await eventHandler.Handle(userCreated, CancellationToken.None);
 
         await bus.Received(1).Publish(
-            Arg.Is<UserCreated>(x => x.Id == userCreated.Id),
+            Arg.Is<UserCreated>(x => x.Id == userCreated.Id && x.Username == userCreated.Username),
             Arg.Any<CancellationToken>()
         );
     }

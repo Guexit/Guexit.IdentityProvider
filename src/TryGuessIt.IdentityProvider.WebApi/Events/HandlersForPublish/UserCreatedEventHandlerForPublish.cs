@@ -18,6 +18,6 @@ public class UserCreatedEventHandlerForPublish : INotificationHandler<UserCreate
     public async ValueTask Handle(UserCreatedDomainEvent @event, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Handling UserCreatedDomainEvent. UserId: '{userId}'", @event.Id);
-        await _bus.Publish(new UserCreated(@event.Id), cancellationToken);
+        await _bus.Publish(new UserCreated(@event.Id, @event.Username), cancellationToken);
     }
 }
