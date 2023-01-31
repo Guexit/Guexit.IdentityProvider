@@ -478,3 +478,4 @@ $RECYCLE.BIN/
 
 
 src/TryGuessIt.IdentityProvider.WebApi/keys/
+.idea/

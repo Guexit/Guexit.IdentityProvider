@@ -1,2 +1,2 @@
 dotnet pack --configuration Release
-dotnet nuget push ".\bin\Release\TryGuessIt.Game.Messages.0.2.0.nupkg" --source "github"
+dotnet nuget push ".\bin\Release\Guexit.IdentityProvider.Messages.{version}.nupkg" --source "github"

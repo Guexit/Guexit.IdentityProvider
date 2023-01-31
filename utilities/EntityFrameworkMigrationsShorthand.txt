@@ -1,8 +1,8 @@
-dotnet ef migrations add NameOfMigration -p .\src\TryGuessIt.IdentityProvider.Infrastructure.Data\TryGuessIt.IdentityProvider.Infrastructure.Data.csproj -s .\src\TryGuessIt.IdentityProvider.WebApi\TryGuessIt.IdentityProvider.WebApi.csproj -c TryGuessItIdentityDbContext --output-dir ..\TryGuessIt.IdentityProvider.Infrastructure.Data\TryGuessItIdentityMigrations
-dotnet ef migrations add InitialMigration -p .\src\TryGuessIt.IdentityProvider.Infrastructure.Data\TryGuessIt.IdentityProvider.Infrastructure.Data.csproj -s .\src\TryGuessIt.IdentityProvider.WebApi\TryGuessIt.IdentityProvider.WebApi.csproj -c PersistedGrantDbContext --output-dir ..\TryGuessIt.IdentityProvider.Infrastructure.Data\PersistedGrantMigrations
+dotnet ef migrations add InitialMigration -p .\src\Guexit.IdentityProvider.Persistence\Guexit.IdentityProvider.Persistence.csproj -s .\src\Guexit.IdentityProvider.WebApi\Guexit.IdentityProvider.WebApi.csproj -c GuexitIdentityDbContext --output-dir ..\Guexit.IdentityProvider.Persistence\GuexitIdentityMigrations
+dotnet ef migrations add InitialMigration -p .\src\Guexit.IdentityProvider.Persistence\Guexit.IdentityProvider.Persistence.csproj -s .\src\Guexit.IdentityProvider.WebApi\Guexit.IdentityProvider.WebApi.csproj -c PersistedGrantDbContext --output-dir ..\Guexit.IdentityProvider.Persistence\PersistedGrantMigrations
 
-dotnet ef database update -p .\src\TryGuessIt.IdentityProvider.Persistence\ -s .\src\TryGuessIt.IdentityProvider.WebApi\ -c TryGuessItIdentityDbContext
-dotnet ef database update -p .\src\TryGuessIt.IdentityProvider.Persistence\ -s .\src\TryGuessIt.IdentityProvider.WebApi\ -c PersistedGrantDbContext
+dotnet ef database update -p .\src\Guexit.IdentityProvider.Persistence\ -s .\src\Guexit.IdentityProvider.WebApi\ -c GuexitIdentityDbContext
+dotnet ef database update -p .\src\Guexit.IdentityProvider.Persistence\ -s .\src\Guexit.IdentityProvider.WebApi\ -c PersistedGrantDbContext
 
 ## Generate EF migrations bundle  
-dotnet ef migrations bundle -p .\src\TryGuessIt.IdentityProvider.Persistence\TryGuessIt.IdentityProvider.Persistence.csproj -s .\src\TryGuessIt.IdentityProvider.WebApi\TryGuessIt.IdentityProvider.WebApi.csproj -c PersistedGrantDbContext -o 'efbundle_PersistedGrantDbContext.exe'
+dotnet ef migrations bundle -p .\src\Guexit.IdentityProvider.Persistence\Guexit.IdentityProvider.Persistence.csproj -s .\src\Guexit.IdentityProvider.WebApi\Guexit.IdentityProvider.WebApi.csproj -c PersistedGrantDbContext -o 'efbundle_PersistedGrantDbContext.exe'
