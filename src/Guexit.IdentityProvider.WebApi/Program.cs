@@ -1,5 +1,7 @@
 using Duende.IdentityServer;
+using Guexit.IdentityProvider.Persistence;
 using Guexit.IdentityProvider.WebApi.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,4 +56,12 @@ app.UseAuthorization();
 
 app.MapRazorPages().RequireAuthorization();
 
-app.Run();
+var databaseOptions = app.Services.GetRequiredService<IOptions<DatabaseOptions>>();
+if (databaseOptions.Value.MigrateOnStartup)
+{
+    await using var scope = app.Services.CreateAsyncScope();
+    await scope.ServiceProvider.GetRequiredService<GuexitIdentityDbContextMigrator>()
+        .MigrateAsync();
+}
+
+await app.RunAsync();

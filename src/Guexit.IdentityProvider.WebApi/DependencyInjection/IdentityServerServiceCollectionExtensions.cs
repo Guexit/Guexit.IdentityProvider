@@ -28,6 +28,12 @@ public static class IdentityServerServiceCollectionExtensions
            .AddUserManager<GuexitUserManager>()
            .AddDefaultTokenProviders();
 
+        services.AddScoped<GuexitIdentityDbContextMigrator>();
+        services.AddOptions<DatabaseOptions>()
+            .BindConfiguration(DatabaseOptions.SectionName)
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+
         services.AddIdentityServer()
             .AddInMemoryClients(configuration.GetSection("IdentityServer:Clients"))
             .AddInMemoryIdentityResources(Config.IdentityResources)
