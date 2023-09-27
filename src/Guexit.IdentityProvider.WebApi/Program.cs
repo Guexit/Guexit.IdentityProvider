@@ -10,7 +10,6 @@ builder.Services.AddMasstransit(builder.Configuration);
 
 builder.Services.AddIdentityServerAndOperationalData(builder.Configuration);
 
-builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
 builder.Services.AddRazorPages();
 
