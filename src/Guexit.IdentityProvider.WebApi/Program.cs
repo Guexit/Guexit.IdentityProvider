@@ -12,11 +12,7 @@ builder.Services.AddIdentityServerAndOperationalData(builder.Configuration);
 
 builder.Services.AddAuthorization();
 builder.Services.AddRazorPages();
-
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(policy => policy.AllowAnyOrigin());
-});
+builder.Services.AddCors(opt => opt.AddDefaultPolicy(policy => policy.AllowAnyOrigin()));
 
 builder.Services.AddAuthentication()
     .AddGoogle(options =>

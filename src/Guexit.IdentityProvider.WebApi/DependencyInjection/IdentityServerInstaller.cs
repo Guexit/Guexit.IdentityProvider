@@ -24,9 +24,10 @@ public static class IdentityServerInstaller
         });
 
         services.AddIdentity<IdentityUser, IdentityRole>()
-           .AddEntityFrameworkStores<GuexitIdentityDbContext>()
-           .AddUserManager<GuexitUserManager>()
-           .AddDefaultTokenProviders();
+            .AddEntityFrameworkStores<GuexitIdentityDbContext>()
+            .AddUserManager<GuexitUserManager>()
+            .AddDefaultTokenProviders();
+        services.ConfigureApplicationCookie(x => x.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest);
 
         services.AddScoped<GuexitIdentityDbContextMigrator>();
         services.AddOptions<DatabaseOptions>()
@@ -34,11 +35,7 @@ public static class IdentityServerInstaller
             .ValidateDataAnnotations()
             .ValidateOnStart();
 
-        services.AddIdentityServer(config => 
-            {
-                config.Authentication.CheckSessionCookieSameSiteMode = SameSiteMode.Lax;
-                config.Authentication.CookieSameSiteMode = SameSiteMode.Lax;
-            })
+        services.AddIdentityServer()
             .AddInMemoryClients(configuration.GetSection("IdentityServer:Clients"))
             .AddInMemoryIdentityResources(Config.IdentityResources)
             .AddOperationalStore(options =>
@@ -57,6 +54,11 @@ public static class IdentityServerInstaller
             })
             .AddAspNetIdentity<IdentityUser>();
 
+        services.Configure<CookiePolicyOptions>(options =>
+        {
+            options.Secure = CookieSecurePolicy.Always;
+        });
+        
         return services;
     }
 }
