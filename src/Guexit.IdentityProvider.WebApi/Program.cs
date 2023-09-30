@@ -40,6 +40,11 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
+app.UseCookiePolicy(new CookiePolicyOptions
+{
+    Secure = CookieSecurePolicy.Always
+});
+
 app.UseHttpsRedirection();
 
 app.UseCors();
