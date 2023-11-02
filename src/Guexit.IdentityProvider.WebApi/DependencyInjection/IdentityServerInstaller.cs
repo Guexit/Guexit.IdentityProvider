@@ -1,6 +1,9 @@
-﻿using Duende.IdentityServer.Services;
+﻿using Azure.Identity;
+using Duende.IdentityServer.Services;
 using Guexit.IdentityProvider.Persistence;
 using Guexit.IdentityProvider.WebApi.UserManagement;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,7 +11,7 @@ namespace Guexit.IdentityProvider.WebApi.DependencyInjection;
 
 public static class IdentityServerInstaller
 {
-    public static IServiceCollection AddIdentityServerAndOperationalData(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddIdentityServerAndOperationalData(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
         services.AddSingleton<ICorsPolicyService>((container) => {
              var logger = container.GetRequiredService<ILogger<DefaultCorsPolicyService>>();
@@ -35,6 +38,14 @@ public static class IdentityServerInstaller
             .ValidateDataAnnotations()
             .ValidateOnStart();
 
+        if (!environment.IsDevelopment())
+        {
+            // https://github.com/DuendeSoftware/Support/issues/812#issuecomment-1666074559
+            services.AddDataProtection()
+                .SetApplicationName("GuexitIdentityProvider")
+                .PersistKeysToDbContext<GuexitIdentityDbContext>();
+        }
+            
         services.AddIdentityServer(options =>
             {
                 options.Authentication.CookieSameSiteMode = SameSiteMode.Lax;
@@ -42,6 +53,7 @@ public static class IdentityServerInstaller
             })
             .AddInMemoryClients(configuration.GetSection("IdentityServer:Clients"))
             .AddInMemoryIdentityResources(Config.IdentityResources)
+            
             .AddOperationalStore(options =>
             {
                 options.ConfigureDbContext = builder =>

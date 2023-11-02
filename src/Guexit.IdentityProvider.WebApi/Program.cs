@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMediator();
 builder.Services.AddMasstransit(builder.Configuration);
 
-builder.Services.AddIdentityServerAndOperationalData(builder.Configuration);
+builder.Services.AddIdentityServerAndOperationalData(builder.Configuration, builder.Environment);
 
 builder.Services.AddAuthorization();
 builder.Services.AddRazorPages();
@@ -40,15 +40,9 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
-app.UseCookiePolicy(new CookiePolicyOptions
-{
-    Secure = CookieSecurePolicy.Always
-});
-
+app.UseCookiePolicy(new CookiePolicyOptions { Secure = CookieSecurePolicy.Always });
 app.UseHttpsRedirection();
-
 app.UseCors();
-
 app.UseStaticFiles();
 app.UseRouting();
 app.UseIdentityServer();
