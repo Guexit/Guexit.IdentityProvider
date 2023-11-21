@@ -1,50 +1,146 @@
+@font-face {
+    font-family: 'Poppins';
+    @include font-url('../fonts/poppins/Poppins-Regular.ttf', 'truetype', normal);
+    @include font-url('../fonts/poppins/Poppins-Italic.ttf', 'truetype', normal);
+    @include font-url('../fonts/poppins/Poppins-Bold.ttf', 'truetype', bold);
+    @include font-url('../fonts/poppins/Poppins-BoldItalic.ttf', 'truetype', bold);
+}
+
+@mixin font-url($url, $format, $weight) {
+    src: url('#{$url}') format('#{$format}');
+    font-weight: $weight;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Poppins';
+}
+
+strong,
+.bold-text {
+    font-weight: bold;
+}
+
 .welcome-page {
-  .logo {
-    width: 64px;
-  }
+    .logo {
+        width: 64px;
+    }
+
+    li {
+        list-style: none;
+        padding: 4px;
+    }
 }
 
 .icon-banner {
-  width: 32px;
+    width: 32px;
 }
 
 .body-container {
-  margin-top: 60px;
-  padding-bottom: 40px;
+    margin-top: 60px;
+    padding-bottom: 40px;
 }
 
-.welcome-page {
-  li {
-    list-style: none;
-    padding: 4px;
-  }
-}
-
-.logged-out-page {
-  iframe {
+.logged-out-page iframe {
     display: none;
     width: 0;
     height: 0;
-  }
 }
 
 .grants-page {
-  .card {
-    margin-top: 20px;
-    border-bottom: 1px solid lightgray;
+    .card {
+        margin-top: 20px;
+        border-bottom: 1px solid lightgray;
 
-    .card-title {
-      img {
-        width: 100px;
-        height: 100px;
-      }
+        .card-title {
+            font-size: 120%;
+            font-weight: bold;
 
-      font-size: 120%;
-      font-weight: bold;
+            img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        label {
+            font-weight: bold;
+        }
+    }
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #111;
+    border: solid;
+    border-radius: 15px;
+    box-shadow: -6px 6px;
+    transition: all 0.3s;
+
+    &:active {
+        box-shadow: 0 0;
+        transform: translateY(4px) translateX(-3px);
+    }
+}
+
+.login-button {
+    background-color: #F4FF8C;
+    color: black;
+}
+
+.signup-button {
+    background-color: #FF91F9;
+    color: black;
+}
+
+.play-guest-button {
+    background-color: #F4FF8C;
+    color: black;
+}
+
+.social-button {
+    border-radius: 50%;
+    padding: 10px;
+    margin: 5px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+}
+
+.facebook-button {
+    background-color: #3B5998;
+}
+
+.google-button {
+    background-color: #DB4437;
+}
+
+.facebook-button::before,
+.google-button::before {
+    content: '';
+}
+
+.divider-with-text {
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    .divider-line {
+        flex: 1;
+        height: 2px;
+        background: #000;
+        margin: 0 8px;
     }
 
-    label {
-      font-weight: bold;
+    .divider-text {
+        padding: 0 10px;
+        background: #FFF;
+        color: #000;
     }
-  }
 }
