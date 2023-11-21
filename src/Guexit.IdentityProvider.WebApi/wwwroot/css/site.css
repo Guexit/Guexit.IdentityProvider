@@ -130,10 +130,15 @@ strong, .bold-text {
 
 .facebook-button {
     background-color: #4267B2;
-    color: white;
+    color: white !important;
 }
 
 .google-button {
     background-color: #DB4437;
-    color: white;
+    color: white !important;
+}
+
+a.unstyled {
+    color: inherit; 
+    text-decoration: none; 
 }

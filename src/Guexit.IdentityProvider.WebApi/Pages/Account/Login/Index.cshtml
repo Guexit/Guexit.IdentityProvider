@@ -75,24 +75,24 @@
                     @if (facebookExternalLogin is not null)
                     {
                         <div class="col-6">
-                            <button class="button primary-button bold-text btn-block facebook-button"
+                            <a class="unstyled button primary-button bold-text btn-block facebook-button"
                                     asp-controller="/ExternalLogin/Challenge"
                                     asp-route-scheme="@facebookExternalLogin.AuthenticationScheme"
                                     asp-route-returnUrl="@Model.Input.ReturnUrl">
                                 @facebookExternalLogin.DisplayName
-                            </button>
+                            </a>
                         </div>
                     }
 
                     @if (googleExternalLogin is not null)
                     {
                         <div class="col-6">
-                            <button class="button primary-button bold-text btn-block google-button"
+                            <a class="unstyled button primary-button bold-text btn-block google-button"
                                     asp-page="/ExternalLogin/Challenge"
                                     asp-route-scheme="@googleExternalLogin.AuthenticationScheme"
                                     asp-route-returnUrl="@Model.Input.ReturnUrl">
                                 @googleExternalLogin.DisplayName
-                            </button>
+                            </a>
                         </div>
                     }
                 </div>
