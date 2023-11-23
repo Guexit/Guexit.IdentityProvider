@@ -66,6 +66,7 @@ strong, .bold-text {
 
 .login-input {
     border: solid;
+    border-width: 3px;
     border-radius: 15px;
     box-shadow: -6px 6px;
     color: black;
@@ -87,10 +88,13 @@ strong, .bold-text {
     color: #fff;
     background-color: #111;
     border: solid;
+    border-width: 3px;
     border-radius: 15px;
     border-color: black;
     box-shadow: -6px 6px black;
     transition: all 0.3s;
+    font-size: smaller;
+    height: 4.5em;
 }
 
     .button:active {
