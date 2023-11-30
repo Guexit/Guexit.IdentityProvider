@@ -33,11 +33,11 @@
                             <button class="button primary-button bold-text btn-block" id="Button_Login" name="Input.Button" value="login">Login</button>
                         </div>
                         <div class="col-6">
-                            <button class="button secondary-button bold-text btn-block" name="Input.Button" value="cancel"
+                            <a class="unstyled button secondary-button bold-text btn-block"
                                     asp-page="/Account/Register"
-                                    asp-route-returnUrl="@Model.Input.ReturnUrl">
+                                    asp-route-ReturnUrl="@Model.Input.ReturnUrl">
                                 Sign Up
-                            </button>
+                            </a>
                         </div>
                     </div>
 
