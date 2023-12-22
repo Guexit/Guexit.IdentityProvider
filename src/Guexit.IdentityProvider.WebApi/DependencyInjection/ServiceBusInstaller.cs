@@ -9,8 +9,7 @@ public static class ServiceBusInstaller
         services.AddMassTransit(config =>
         {
             config.SetKebabCaseEndpointNameFormatter();
-
-
+            
             config.AddConsumers(typeof(IAssemblyMarker).Assembly);
             config.UsingAzureServiceBus((context, cfg) =>
             {

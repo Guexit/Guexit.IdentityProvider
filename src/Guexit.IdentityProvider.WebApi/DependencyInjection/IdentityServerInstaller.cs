@@ -1,9 +1,7 @@
-﻿using Azure.Identity;
-using Duende.IdentityServer.Services;
+﻿using Duende.IdentityServer.Services;
 using Guexit.IdentityProvider.Persistence;
 using Guexit.IdentityProvider.WebApi.UserManagement;
 using Microsoft.AspNetCore.DataProtection;
-using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -60,7 +58,7 @@ public static class IdentityServerInstaller
                 {
                     builder.UseNpgsql(
                         configuration.GetConnectionString("Guexit_IdentityProvider_IdentityServerOperationalData"),
-                        opt => opt.MigrationsAssembly(typeof(Guexit.IdentityProvider.Persistence.IAssemblyMarker)
+                        opt => opt.MigrationsAssembly(typeof(Persistence.IAssemblyMarker)
                             .Assembly.FullName));
                 };
 

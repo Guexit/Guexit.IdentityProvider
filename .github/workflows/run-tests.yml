@@ -1,0 +1,60 @@
+name: Run Tests
+
+on:
+  workflow_call:
+    outputs:
+      commit-hash:
+        description: 'Commit hash that passed the tests'
+        value: ${{ jobs.build-and-run-tests.outputs.commit-hash }}
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-run-tests:
+    name: Build solution and run tests
+    runs-on: ubuntu-latest
+    outputs:
+      commit-hash: ${{ steps.output-commit-hash.outputs.commit-hash }}
+    services:
+      postgres:
+        image: postgres:15.3
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: guexit_identityprovider
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET SDK 8.0.x
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+      - name: Restore NuGet packages
+        run: dotnet restore -r 'linux-x64'
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Run unit tests
+        run: dotnet test --filter FullyQualifiedName~.UnitTests
+      - name: Generate EF migrations bundle
+        run: |
+          dotnet tool install --global dotnet-ef
+          dotnet tool restore
+          cd /home/runner/work/Guexit.IdentityProvider/Guexit.IdentityProvider/
+          dotnet ef migrations bundle -p ./src/Guexit.IdentityProvider.Persistence/Guexit.IdentityProvider.Persistence.csproj -s ./src/Guexit.IdentityProvider.WebApi/Guexit.IdentityProvider.WebApi.csproj -c PersistedGrantDbContext -o 'efbundle_PersistedGrantDbContext.exe' --verbose
+          dotnet ef migrations bundle -p ./src/Guexit.IdentityProvider.Persistence/Guexit.IdentityProvider.Persistence.csproj -s ./src/Guexit.IdentityProvider.WebApi/Guexit.IdentityProvider.WebApi.csproj -c GuexitIdentityDbContext -o 'efbundle_GuexitIdentityDbContext.exe' --verbose
+      - name: Execute database migrations
+        run: |
+          ./efbundle_GuexitIdentityDbContext.exe --connection 'User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=guexit_identityprovider;'
+          ./efbundle_PersistedGrantDbContext.exe --connection 'User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=guexit_identityprovider;'
+      - name: Run integration tests
+        env:
+          ConnectionStrings__Guexit_IdentityProvider_IdentityUsers: User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=guexit_identityprovider;
+          ConnectionStrings__Guexit_IdentityProvider_IdentityServerOperationalData: User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=guexit_identityprovider;
+        run: dotnet test --filter FullyQualifiedName~.IntegrationTests
+      - name: Output commit hash
+        id: output-commit-hash
+        run: |
+          echo "commit-hash=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+          echo "All tests passed for commit '$(git rev-parse HEAD)'"
