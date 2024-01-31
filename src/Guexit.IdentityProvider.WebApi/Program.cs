@@ -5,7 +5,7 @@ using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAppInsights();
+builder.AddTelemetry();
 builder.Services.AddMediator();
 builder.Services.AddMasstransit(builder.Configuration);
 builder.Services.AddIdentityServerAndOperationalData(builder.Configuration, builder.Environment);
