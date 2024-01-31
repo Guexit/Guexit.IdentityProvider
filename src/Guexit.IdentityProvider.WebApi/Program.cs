@@ -5,11 +5,10 @@ using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddApplicationInsightsTelemetry();
 builder.Services.AddMediator();
 builder.Services.AddMasstransit(builder.Configuration);
-
 builder.Services.AddIdentityServerAndOperationalData(builder.Configuration, builder.Environment);
-
 builder.Services.AddAuthorization();
 builder.Services.AddRazorPages();
 builder.Services.AddCors(opt => opt.AddDefaultPolicy(policy => policy.AllowAnyOrigin()));
