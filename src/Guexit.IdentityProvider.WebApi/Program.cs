@@ -20,11 +20,13 @@ builder.Services.AddAuthentication()
         options.ClientId = builder.Configuration.GetSection("Authentication").GetValue<string>("Google:ClientId")!;
         options.ClientSecret = builder.Configuration.GetSection("Authentication").GetValue<string>("Google:ClientSecret")!;
     })
-    .AddFacebook(options =>
+    .AddDiscord(options =>
     {
         options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
-        options.AppId = builder.Configuration.GetSection("Authentication").GetValue<string>("Facebook:ClientId")!;
-        options.AppSecret = builder.Configuration.GetSection("Authentication").GetValue<string>("Facebook:ClientSecret")!;
+        options.ClientId = builder.Configuration.GetSection("Authentication").GetValue<string>("Discord:ClientId")!;
+        options.ClientSecret = builder.Configuration.GetSection("Authentication").GetValue<string>("Discord:ClientSecret")!;
+        options.Scope.Add("guilds");
+        options.Scope.Add("email");
     });
 
 builder.Services.AddEndpointsApiExplorer();

@@ -1,5 +1,5 @@
 ﻿@page
-@using Microsoft.AspNetCore.Authentication.Facebook
+@using AspNet.Security.OAuth.Discord
 @using Microsoft.AspNetCore.Authentication.Google
 @model Guexit.IdentityProvider.WebApi.Pages.Account.RegisterModel
 
@@ -43,17 +43,17 @@
             <div class="row g-2 ">
                 @{
                     var googleExternalLogin = Model.ExternalLogins.FirstOrDefault(x => x.Name == GoogleDefaults.AuthenticationScheme);
-                    var facebookExternalLogin = Model.ExternalLogins.FirstOrDefault(x => x.Name == FacebookDefaults.AuthenticationScheme);
+                    var discordExternalLogin = Model.ExternalLogins.FirstOrDefault(x => x.Name == DiscordAuthenticationDefaults.AuthenticationScheme);
                 }
 
-                @if (facebookExternalLogin is not null)
+                @if (discordExternalLogin is not null)
                 {
                     <div class="col-6">
                         <a class="unstyled button primary-button bold-text btn-block facebook-button"
                            asp-page="/ExternalLogin/Challenge"
-                           asp-route-scheme="@facebookExternalLogin.Name"
+                           asp-route-scheme="@discordExternalLogin.Name"
                            asp-route-returnUrl="@Model.ReturnUrl">
-                            @facebookExternalLogin.DisplayName
+                            @discordExternalLogin.DisplayName
                         </a>
                     </div>
                 }
