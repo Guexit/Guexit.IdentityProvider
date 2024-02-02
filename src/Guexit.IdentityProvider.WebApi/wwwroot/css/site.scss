@@ -114,16 +114,21 @@ strong,
     line-height: 50px;
 }
 
-.facebook-button {
-    background-color: #3B5998;
+.discord-button {
+    background-color: #7289DA;
 }
 
 .google-button {
     background-color: #DB4437;
 }
 
-.facebook-button::before,
-.google-button::before {
+.twitch-button {
+    background-color: #9146FF;
+}
+
+.discord-button::before,
+.google-button::before,
+.twitch-button::before {
     content: '';
 }
 

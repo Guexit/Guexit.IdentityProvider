@@ -27,6 +27,12 @@ builder.Services.AddAuthentication()
         options.ClientSecret = builder.Configuration.GetSection("Authentication").GetValue<string>("Discord:ClientSecret")!;
         options.Scope.Add("guilds");
         options.Scope.Add("email");
+    })
+    .AddTwitch(options =>
+    {
+        options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+        options.ClientId = builder.Configuration.GetSection("Authentication").GetValue<string>("Twitch:ClientId")!;
+        options.ClientSecret = builder.Configuration.GetSection("Authentication").GetValue<string>("Twitch:ClientSecret")!;
     });
 
 builder.Services.AddEndpointsApiExplorer();
