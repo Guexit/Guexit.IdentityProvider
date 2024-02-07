@@ -13,23 +13,17 @@ public static class IdentityServerInstaller
     {
         services.AddSingleton<ICorsPolicyService>((container) => {
              var logger = container.GetRequiredService<ILogger<DefaultCorsPolicyService>>();
-             return new DefaultCorsPolicyService(logger)
-             {
-                 AllowAll = true
-             };
+             return new DefaultCorsPolicyService(logger) { AllowAll = true };
         });
 
-        services.AddDbContext<GuexitIdentityDbContext>(options =>
-        {
-            options.UseNpgsql(configuration.GetConnectionString("Guexit_IdentityProvider_IdentityUsers"));
-        });
+        services.AddDbContext<GuexitIdentityDbContext>(options => options
+            .UseNpgsql(configuration.GetConnectionString("Guexit_IdentityProvider_IdentityUsers")));
 
         services.AddIdentity<IdentityUser, IdentityRole>()
             .AddEntityFrameworkStores<GuexitIdentityDbContext>()
             .AddUserManager<GuexitUserManager>()
             .AddDefaultTokenProviders();
-        services.ConfigureApplicationCookie(x => x.Cookie.SecurePolicy = CookieSecurePolicy.Always);
-
+        
         services.AddScoped<GuexitIdentityDbContextMigrator>();
         services.AddOptions<DatabaseOptions>()
             .BindConfiguration(DatabaseOptions.SectionName)
@@ -51,7 +45,6 @@ public static class IdentityServerInstaller
             })
             .AddInMemoryClients(configuration.GetSection("IdentityServer:Clients"))
             .AddInMemoryIdentityResources(Config.IdentityResources)
-            
             .AddOperationalStore(options =>
             {
                 options.ConfigureDbContext = builder =>
@@ -68,10 +61,7 @@ public static class IdentityServerInstaller
             })
             .AddAspNetIdentity<IdentityUser>();
 
-        services.Configure<CookiePolicyOptions>(options =>
-        {
-            options.Secure = CookieSecurePolicy.Always;
-        });
+        services.Configure<CookiePolicyOptions>(options => options.Secure = CookieSecurePolicy.Always);
         
         return services;
     }
