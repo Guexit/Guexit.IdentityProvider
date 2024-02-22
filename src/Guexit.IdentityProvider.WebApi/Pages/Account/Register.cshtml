@@ -7,12 +7,12 @@
 
 <div class="login-page">
 
-    <div class="flex text-center m-5">
+    <div class="m-5">
         <img src="~/guexit-logo.svg" alt="Guexit">
     </div>
 
     <div class="row p-3">
-        <div class="col-sm-6 mb-3">
+        <div class="col-sm-12 mb-3">
             <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                 <p class="bold-text">Create a new account!</p>
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
@@ -35,13 +35,13 @@
             </form>
         </div>
 
-        <div class="col-sm-6 divider-with-text my-3">
+        <div class="col-sm-12 divider-with-text my-3">
             <span class="divider-line"></span>
             <span class="divider-text small">or continue with</span>
             <span class="divider-line"></span>
         </div>
 
-        <div class="col-sm-6 mb-3">
+        <div class="col-sm-12 mb-3">
             <div class="row g-2 ">
                 @{
                     var googleExternalLogin = Model.ExternalLogins.FirstOrDefault(x => x.Name == GoogleDefaults.AuthenticationScheme);

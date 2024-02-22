@@ -6,7 +6,7 @@
 
 <div class="login-page">
     
-    <div class="flex text-center m-5">
+    <div class="m-5">
         <img src="~/guexit-logo.svg" alt="Guexit">
     </div>
     
@@ -16,7 +16,7 @@
 
         @if (Model.View.EnableLocalLogin)
         {
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <form asp-page="/Account/Login/Index">
                     <input type="hidden" asp-for="Input.ReturnUrl" />
 
@@ -60,13 +60,13 @@
         
         @if (Model.View.VisibleExternalProviders.Any())
         {
-            <div class="col-sm-6 divider-with-text mb-3">
+            <div class="col-sm-12 divider-with-text mb-3">
                 <span class="divider-line"></span>
                 <span class="divider-text small">or continue with</span>
                 <span class="divider-line"></span>
             </div>
 
-            <div class="col-sm-6 mb-3">
+            <div class="col-sm-12 mb-3">
                 <div class="row g-2 ">
                     @{
                         var googleExternalLogin = Model.View.VisibleExternalProviders.FirstOrDefault(x => x.AuthenticationScheme == GoogleDefaults.AuthenticationScheme);

@@ -14,11 +14,15 @@
 
 
 body {
-    font-family: 'Poppins';
+    font-family: 'Poppins', serif;
 }
 
 strong, .bold-text {
     font-weight: bold;
+}
+
+.login-page {
+    max-width: 570px;
 }
 
 .welcome-page .logo {
