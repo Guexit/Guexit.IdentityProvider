@@ -25,6 +25,10 @@ strong, .bold-text {
     max-width: 570px;
 }
 
+.login-page .logo {
+    max-width: 256px;
+}
+
 .welcome-page .logo {
     width: 64px;
 }
