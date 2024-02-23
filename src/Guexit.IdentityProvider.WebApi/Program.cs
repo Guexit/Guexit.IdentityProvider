@@ -6,7 +6,7 @@ using Microsoft.Extensions.Options;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddTelemetry();
-builder.Services.AddMediator();
+builder.Services.AddMediator(options => options.ServiceLifetime = ServiceLifetime.Scoped);
 builder.Services.AddMasstransit(builder.Configuration);
 builder.Services.AddIdentityServerAndOperationalData(builder.Configuration, builder.Environment);
 builder.Services.AddAuthorization();

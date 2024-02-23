@@ -13,15 +13,15 @@ public class WhenHandlingUserCreatedEvent
     public async Task IsPublished()
     {
         var userCreated = new UserCreatedDomainEvent(Guid.NewGuid().ToString(), "username");
-        var bus = Substitute.For<IBus>();
-        var eventHandler = new UserCreatedEventHandlerForPublish(
-            bus,
-            Substitute.For<ILogger<UserCreatedEventHandlerForPublish>>()
+        var publishEndpoint = Substitute.For<IPublishEndpoint>();
+        var eventHandler = new UserCreatedProducer(
+            publishEndpoint,
+            Substitute.For<ILogger<UserCreatedProducer>>()
         );
 
-        await eventHandler.Handle(userCreated, CancellationToken.None);
+        await eventHandler.Handle(userCreated);
 
-        await bus.Received(1).Publish(
+        await publishEndpoint.Received(1).Publish(
             Arg.Is<UserCreated>(x => x.Id == userCreated.Id && x.Username == userCreated.Username),
             Arg.Any<CancellationToken>()
         );

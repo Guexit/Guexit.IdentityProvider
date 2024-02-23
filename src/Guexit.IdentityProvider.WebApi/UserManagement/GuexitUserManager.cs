@@ -1,37 +1,26 @@
-﻿using Guexit.IdentityProvider.WebApi.Events;
+﻿using Guexit.IdentityProvider.Persistence;
+using Guexit.IdentityProvider.WebApi.Events;
 using Mediator;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
 namespace Guexit.IdentityProvider.WebApi.UserManagement;
 
-public sealed class GuexitUserManager : UserManager<IdentityUser>
+public sealed class GuexitUserStore : UserStore<IdentityUser>
 {
     private readonly IPublisher _publisher;
 
-    public GuexitUserManager(
-        IUserStore<IdentityUser> store, 
-        IOptions<IdentityOptions> optionsAccessor, 
-        IPasswordHasher<IdentityUser> passwordHasher, 
-        IEnumerable<IUserValidator<IdentityUser>> userValidators, 
-        IEnumerable<IPasswordValidator<IdentityUser>> passwordValidators,
-        ILookupNormalizer keyNormalizer, 
-        IdentityErrorDescriber errors, 
-        IServiceProvider services, 
-        ILogger<UserManager<IdentityUser>> logger, 
-        IPublisher publisher) 
-        : base(store, optionsAccessor, passwordHasher, userValidators,
-            passwordValidators, keyNormalizer, errors, services, logger)
+
+    public GuexitUserStore(GuexitIdentityDbContext dbContext, IPublisher publisher) : base(dbContext)
     {
         _publisher = publisher;
     }
 
-    public override async Task<IdentityResult> CreateAsync(IdentityUser user)
+    public override async Task<IdentityResult> CreateAsync(IdentityUser user, CancellationToken cancellationToken = new CancellationToken())
     {
-        var identityResult = await base.CreateAsync(user);
-        if (identityResult.Succeeded)
-            await _publisher.Publish(new UserCreatedDomainEvent(user.Id, user.Email));
-
-        return identityResult;
+        await _publisher.Publish(new UserCreatedDomainEvent(user.Id, user.Email), cancellationToken);
+        return await base.CreateAsync(user, cancellationToken);
     }
 }

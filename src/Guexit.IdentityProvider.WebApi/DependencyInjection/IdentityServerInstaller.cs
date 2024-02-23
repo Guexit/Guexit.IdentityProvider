@@ -21,7 +21,7 @@ public static class IdentityServerInstaller
 
         services.AddIdentity<IdentityUser, IdentityRole>()
             .AddEntityFrameworkStores<GuexitIdentityDbContext>()
-            .AddUserManager<GuexitUserManager>()
+            .AddUserStore<GuexitUserStore>()
             .AddDefaultTokenProviders();
         
         services.AddScoped<GuexitIdentityDbContextMigrator>();
