@@ -33,6 +33,7 @@
                            asp-page="/ExternalLogin/Challenge"
                            asp-route-scheme="@discordExternalLogin.Name"
                            asp-route-returnUrl="@Model.ReturnUrl">
+                            <img src="~/icons/discord-icon.svg" alt="Discord" class="social-icon">
                             @discordExternalLogin.DisplayName
                         </a>
                     </div>
@@ -46,6 +47,7 @@
                            asp-page="/ExternalLogin/Challenge"
                            asp-route-scheme="@twitchExternalLogin.Name"
                            asp-route-returnUrl="@Model.ReturnUrl">
+                            <img src="~/icons/twitch-icon.svg" alt="Twitch" class="social-icon">
                             @twitchExternalLogin.DisplayName
                         </a>
                     </div>
@@ -55,10 +57,11 @@
                 @if (googleExternalLogin is not null)
                 {
                     <div class="col-4">
-                        <a class="unstyled button primary-button bold-text btn-block google-button"
+                        <a class="unstyled button primary-button bold-text btn-block google-button social-button"
                            asp-page="/ExternalLogin/Challenge"
                            asp-route-scheme="@googleExternalLogin.Name"
                            asp-route-returnUrl="@Model.ReturnUrl">
+                            <img src="~/icons/google-icon.svg" alt="Google" class="social-icon">
                             @googleExternalLogin.DisplayName
                         </a>
                     </div>
@@ -73,7 +76,9 @@
         </div>
 
         <div class="col-sm-12 mb-3">
-            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <form asp-page="/Account/Register">
+                <input type="hidden" asp-for="ReturnUrl"/>
+
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                 <div class="form-floating">
                     <label asp-for="Input.Email">Email</label>
@@ -85,7 +90,7 @@
                     <input asp-for="Input.Password" class="form-control bold-text login-input mb-3" autocomplete="new-password" aria-required="true" placeholder="Enter your password..."/>
                     <span asp-validation-for="Input.Password" class="text-danger small"></span>
                 </div>
-                <div class="form-floating mb-3">
+                <div class="form-floating mb-5">
                     <label asp-for="Input.ConfirmPassword">Confirm Password</label>
                     <input asp-for="Input.ConfirmPassword" class="form-control bold-text login-input mb-3" autocomplete="new-password" aria-required="true" placeholder="Repeat you password..."/>
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger small"></span>
