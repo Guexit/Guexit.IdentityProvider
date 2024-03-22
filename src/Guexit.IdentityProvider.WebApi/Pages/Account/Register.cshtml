@@ -7,37 +7,14 @@
 
 <div class="login-page">
 
-    <div class="m-5 text-center flex">
+    <div class="m-3 text-center flex">
         <img class="logo" src="~/guexit-logo.svg" alt="Guexit">
     </div>
 
     <div class="row p-3">
-        <div class="col-sm-12 mb-3">
-            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                <p class="bold-text">Create a new account!</p>
-                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-                <div class="form-floating">
-                    <label asp-for="Input.Email">Email</label>
-                    <input asp-for="Input.Email" class="form-control bold-text login-input mb-3" autocomplete="username" aria-required="true" placeholder="Enter your email..." />
-                    <span asp-validation-for="Input.Email" class="text-danger small"></span>
-                </div>
-                <div class="form-floating">
-                    <label asp-for="Input.Password">Password</label>
-                    <input asp-for="Input.Password" class="form-control bold-text login-input mb-3" autocomplete="new-password" aria-required="true" placeholder="Enter your password..." />
-                    <span asp-validation-for="Input.Password" class="text-danger small"></span>
-                </div>
-                <div class="form-floating mb-3">
-                    <label asp-for="Input.ConfirmPassword">Confirm Password</label>
-                    <input asp-for="Input.ConfirmPassword" class="form-control bold-text login-input mb-3" autocomplete="new-password" aria-required="true" placeholder="Repeat you password..." />
-                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger small"></span>
-                </div>
-                <button id="registerSubmit" type="submit" class="button primary-button bold-text btn-block">Register</button>
-            </form>
-        </div>
-
-        <div class="col-sm-12 divider-with-text my-3">
+        <div class="col-sm-12 divider-with-text mb-4">
             <span class="divider-line"></span>
-            <span class="divider-text small">or continue with</span>
+            <span class="divider-text small">choose a way to register</span>
             <span class="divider-line"></span>
         </div>
 
@@ -61,20 +38,20 @@
                     </div>
                 }
 
-                
+
                 @if (twitchExternalLogin is not null)
                 {
                     <div class="col-4">
                         <a class="unstyled button primary-button bold-text btn-block twitch-button"
-                                asp-page="/ExternalLogin/Challenge"
-                                asp-route-scheme="@twitchExternalLogin.Name"
-                                asp-route-returnUrl="@Model.ReturnUrl">
+                           asp-page="/ExternalLogin/Challenge"
+                           asp-route-scheme="@twitchExternalLogin.Name"
+                           asp-route-returnUrl="@Model.ReturnUrl">
                             @twitchExternalLogin.DisplayName
                         </a>
                     </div>
                 }
-                
-                
+
+
                 @if (googleExternalLogin is not null)
                 {
                     <div class="col-4">
@@ -88,5 +65,35 @@
                 }
             </div>
         </div>
+
+        <div class="col-sm-12 divider-with-text my-3">
+            <span class="divider-line"></span>
+            <span class="divider-text small">or continue with</span>
+            <span class="divider-line"></span>
+        </div>
+
+        <div class="col-sm-12 mb-3">
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="form-floating">
+                    <label asp-for="Input.Email">Email</label>
+                    <input asp-for="Input.Email" class="form-control bold-text login-input mb-3" autocomplete="username" aria-required="true" placeholder="Enter your email..."/>
+                    <span asp-validation-for="Input.Email" class="text-danger small"></span>
+                </div>
+                <div class="form-floating">
+                    <label asp-for="Input.Password">Password</label>
+                    <input asp-for="Input.Password" class="form-control bold-text login-input mb-3" autocomplete="new-password" aria-required="true" placeholder="Enter your password..."/>
+                    <span asp-validation-for="Input.Password" class="text-danger small"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control bold-text login-input mb-3" autocomplete="new-password" aria-required="true" placeholder="Repeat you password..."/>
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger small"></span>
+                </div>
+                <button id="registerSubmit" type="submit" class="mt-2 button primary-button bold-text btn-block">Register</button>
+            </form>
+        </div>
+
+
     </div>
 </div>
