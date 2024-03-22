@@ -5,20 +5,83 @@
 @model Guexit.IdentityProvider.WebApi.Pages.Account.Login.Index
 
 <div class="login-page">
-    
-    <div class="m-5 text-center flex">
+
+    <div class="m-3 text-center flex">
         <img class="logo" src="~/guexit-logo.svg" alt="Guexit">
     </div>
     
-    <partial name="_ValidationSummary" />
-
     <div class="row p-3">
+        @if (Model.View.VisibleExternalProviders.Any())
+        {
+            <div class="col-sm-12 divider-with-text mb-4">
+                <span class="divider-line"></span>
+                <span class="divider-text small">choose a way to log in</span>
+                <span class="divider-line"></span>
+            </div>
+            
+            <div class="col-sm-12 mb-3">
+                <div class="row g-2 ">
+                    @{
+                        var googleExternalLogin = Model.View.VisibleExternalProviders.FirstOrDefault(x => x.AuthenticationScheme == GoogleDefaults.AuthenticationScheme);
+                        var discordExternalLogin = Model.View.VisibleExternalProviders.FirstOrDefault(x => x.AuthenticationScheme == DiscordAuthenticationDefaults.AuthenticationScheme);
+                        var twitchExternalLogin = Model.View.VisibleExternalProviders.FirstOrDefault(x => x.AuthenticationScheme == TwitchAuthenticationDefaults.AuthenticationScheme);
+                    }
+
+                    @if (discordExternalLogin is not null)
+                    {
+                        <div class="col-4">
+                            <a class="unstyled button primary-button bold-text btn-block discord-button social-button"
+                               asp-page="/ExternalLogin/Challenge"
+                               asp-route-scheme="@discordExternalLogin.AuthenticationScheme"
+                               asp-route-returnUrl="@Model.Input.ReturnUrl">
+                                <img src="~/icons/discord-icon.svg" alt="Discord" class="social-icon">
+                                @discordExternalLogin.DisplayName
+                            </a>
+                        </div>
+                    }
+
+                    @if (twitchExternalLogin is not null)
+                    {
+                        <div class="col-4">
+                            <a class="unstyled button primary-button bold-text btn-block twitch-button social-button"
+                               asp-page="/ExternalLogin/Challenge"
+                               asp-route-scheme="@twitchExternalLogin.AuthenticationScheme"
+                               asp-route-returnUrl="@Model.Input.ReturnUrl">
+                                <img src="~/icons/twitch-icon.svg" alt="Twitch" class="social-icon">
+                                @twitchExternalLogin.DisplayName
+                            </a>
+                        </div>
+                    }
+
+                    @if (googleExternalLogin is not null)
+                    {
+                        <div class="col-4">
+                            <a class="unstyled button primary-button bold-text btn-block google-button social-button"
+                               asp-page="/ExternalLogin/Challenge"
+                               asp-route-scheme="@googleExternalLogin.AuthenticationScheme"
+                               asp-route-returnUrl="@Model.Input.ReturnUrl">
+                                <img src="~/icons/google-icon.svg" alt="Google" class="social-icon">
+                                @googleExternalLogin.DisplayName
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
 
         @if (Model.View.EnableLocalLogin)
         {
+            <partial name="_ValidationSummary"/>
+
+            <div class="col-sm-12 divider-with-text my-3">
+                <span class="divider-line"></span>
+                <span class="divider-text small">or continue with</span>
+                <span class="divider-line"></span>
+            </div>
+
             <div class="col-sm-12">
                 <form asp-page="/Account/Login/Index">
-                    <input type="hidden" asp-for="Input.ReturnUrl" />
+                    <input type="hidden" asp-for="Input.ReturnUrl"/>
 
                     <div class="form-group">
                         <label asp-for="Input.Username">Email</label>
@@ -35,8 +98,8 @@
                         </div>
                         <div class="col-6">
                             <a class="unstyled button secondary-button bold-text btn-block"
-                                    asp-page="/Account/Register"
-                                    asp-route-ReturnUrl="@Model.Input.ReturnUrl">
+                               asp-page="/Account/Register"
+                               asp-route-ReturnUrl="@Model.Input.ReturnUrl">
                                 Sign Up
                             </a>
                         </div>
@@ -58,62 +121,6 @@
             </div>
         }
         
-        @if (Model.View.VisibleExternalProviders.Any())
-        {
-            <div class="col-sm-12 divider-with-text mb-3">
-                <span class="divider-line"></span>
-                <span class="divider-text small">or continue with</span>
-                <span class="divider-line"></span>
-            </div>
-
-            <div class="col-sm-12 mb-3">
-                <div class="row g-2 ">
-                    @{
-                        var googleExternalLogin = Model.View.VisibleExternalProviders.FirstOrDefault(x => x.AuthenticationScheme == GoogleDefaults.AuthenticationScheme);
-                        var discordExternalLogin = Model.View.VisibleExternalProviders.FirstOrDefault(x => x.AuthenticationScheme == DiscordAuthenticationDefaults.AuthenticationScheme);
-                        var twitchExternalLogin = Model.View.VisibleExternalProviders.FirstOrDefault(x => x.AuthenticationScheme == TwitchAuthenticationDefaults.AuthenticationScheme);
-                    }
-
-                    @if (discordExternalLogin is not null)
-                    {
-                        <div class="col-4">
-                            <a class="unstyled button primary-button bold-text btn-block discord-button"
-                                    asp-page="/ExternalLogin/Challenge"
-                                    asp-route-scheme="@discordExternalLogin.AuthenticationScheme"
-                                    asp-route-returnUrl="@Model.Input.ReturnUrl">
-                                @discordExternalLogin.DisplayName
-                            </a>
-                        </div>
-                    }
-
-                    
-                    @if (twitchExternalLogin is not null)
-                    {
-                        <div class="col-4">
-                            <a class="unstyled button primary-button bold-text btn-block twitch-button"
-                                    asp-page="/ExternalLogin/Challenge"
-                                    asp-route-scheme="@twitchExternalLogin.AuthenticationScheme"
-                                    asp-route-returnUrl="@Model.Input.ReturnUrl">
-                                @twitchExternalLogin.DisplayName
-                            </a>
-                        </div>
-                    }
-                    
-                    @if (googleExternalLogin is not null)
-                    {
-                        <div class="col-4">
-                            <a class="unstyled button primary-button bold-text btn-block google-button"
-                                    asp-page="/ExternalLogin/Challenge"
-                                    asp-route-scheme="@googleExternalLogin.AuthenticationScheme"
-                                    asp-route-returnUrl="@Model.Input.ReturnUrl">
-                                @googleExternalLogin.DisplayName
-                            </a>
-                        </div>
-                    }
-                </div>
-            </div>
-        }
-
         @if (!Model.View.EnableLocalLogin && !Model.View.VisibleExternalProviders.Any())
         {
             <div class="alert alert-warning">

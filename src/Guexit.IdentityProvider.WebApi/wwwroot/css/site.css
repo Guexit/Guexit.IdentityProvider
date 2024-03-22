@@ -38,7 +38,7 @@ strong, .bold-text {
 }
 
 .body-container {
-    margin-top: 60px;
+    margin-top: 30px;
     padding-bottom: 40px;
 }
 
@@ -140,6 +140,16 @@ strong, .bold-text {
     color: #000;
 }
 
+.social-button {
+    min-width: 90px;
+}
+
+.social-icon {
+    max-height: 20px;
+    max-width: 20px;
+    margin-right: 3px;
+}
+
 .discord-button {
     background-color: #7289DA;
     color: white !important;
@@ -162,3 +172,4 @@ a.unstyled {
     color: inherit; 
     text-decoration: none; 
 }
+
