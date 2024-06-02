@@ -63,5 +63,3 @@ jobs:
         CONTAINER_APP_NAME: guexit-prod-identity-provider
       secrets:
         AZURE_CREDENTIALS_GUEXIT_PRD: ${{ secrets.AZURE_CREDENTIALS_GUEXIT_PRD }}
-              
-      
