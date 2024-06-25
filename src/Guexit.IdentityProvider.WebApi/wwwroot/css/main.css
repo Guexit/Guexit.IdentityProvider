@@ -106,3 +106,33 @@ body {
 a {
     color: blue;
 }
+
+/* Legacy */
+
+.logged-out-page iframe {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.welcome-page .logo {
+    width: 64px;
+}
+
+.welcome-page li {
+    list-style: none;
+    padding: 4px;
+}
+
+.login-page {
+    max-width: 570px;
+}
+
+.login-page .logo {
+    max-width: 256px;
+}
+
+.body-container {
+    margin-top: 30px;
+    padding-bottom: 40px;
+}
