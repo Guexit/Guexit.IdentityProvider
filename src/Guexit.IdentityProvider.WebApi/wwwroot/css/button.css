@@ -1,0 +1,117 @@
+/* Common styles for buttons and anchor tags with the 'button' class */
+button, .button {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 9999px;
+    cursor: pointer;
+    outline: none;
+    transition: all 200ms;
+    height: fit-content;
+    overflow: hidden;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--gray-950);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: -2px 4px var(--gray-950);
+    border: solid 4px var(--gray-950);
+    text-decoration: none; /* Ensures the text looks like a button, not a link */
+}
+
+button .loader, .button .loader {
+    background: #00000055;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+button .loader span, .button .loader span {
+    height: fit-content;
+    padding: var(--p-0) var(--p-2);
+    background: white;
+    border-radius: 999px;
+    width: var(--p-8);
+    text-align: center;
+    line-height: 1;
+}
+
+button .loader span:after, .button .loader span:after {
+    content: '';
+    animation: ellipsis 1.5s infinite;
+}
+
+@keyframes ellipsis {
+    0% {
+        content: '.';
+    }
+    33% {
+        content: '..';
+    }
+    66% {
+        content: '...';
+    }
+    100% {
+        content: '.';
+    }
+}
+
+button.disabled, .button.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+button:hover, .button:hover {
+    box-shadow: -3px 5px var(--gray-950);
+    transform: translate3d(1px, -1px, 0);
+    background-color: var(--yellow-50);
+}
+
+button.primary, .button.primary {
+    background-color: var(--yellow-200);
+}
+
+button.secondary, .button.secondary {
+    background-color: var(--pink-300);
+}
+
+button.default, .button.default {
+    background-color: var(--white);
+}
+
+button.special, .button.special {
+    background-color: var(--light-blue-300);
+}
+
+button.confirm, .button.confirm {
+    background-color: var(--green-400);
+}
+
+button.ghost, .button.ghost {
+    background-color: transparent;
+    border: none
+}
+
+button:active, .button:active {
+    box-shadow: -0px 0px var(--gray-950);
+    transform: translate3d(-2px, 4px, 0);
+}
+
+/* Additional styles to remove link underline and change color */
+.button {
+    text-decoration: none;
+    color: var(--gray-950);
+}
+
+.button:hover {
+    text-decoration: none;
+    color: var(--gray-950);
+}

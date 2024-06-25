@@ -1,0 +1,43 @@
+:root {
+    /* spacing */
+    --p-0: 0px;
+    --p-1: 4px;
+    --p-1_5: 6px;
+    --p-2: 8px;
+    --p-3: 12px;
+    --p-4: 16px;
+    --p-5: 20px;
+    --p-6: 24px;
+    --p-8: 32px;
+    --p-10: 40px;
+    --p-12: 48px;
+    --p-16: 64px;
+    --p-20: 80px;
+    --p-24: 96px;
+    --p-32: 128px;
+    /* sizes */
+    --s-1: 4px;
+    --s-1_5: 6px;
+    --s-2: 8px;
+    --s-3: 12px;
+    --s-4: 16px;
+    --s-5: 20px;
+    --s-6: 24px;
+    --s-8: 32px;
+    --s-10: 40px;
+    --s-12: 48px;
+    --s-16: 64px;
+    --s-20: 80px;
+    --s-24: 96px;
+    --s-32: 128px;
+    --s-48: 192px;
+    --s-64: 256px;
+    --s-80: 320px;
+    --s-128: 512px;
+    /* screens */
+    --screen-xs: 475px;
+    --screen-sm: 576px;
+    --screen-md: 768px;
+    --screen-lg: 992px;
+    --screen-xl: 1200px;
+}

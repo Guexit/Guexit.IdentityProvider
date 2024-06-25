@@ -4,129 +4,70 @@
 @using Microsoft.AspNetCore.Authentication.Google
 @model Guexit.IdentityProvider.WebApi.Pages.Account.Login.Index
 
-<div class="login-page">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Guexit</title>
+    <link rel="stylesheet" href="~/css/main.css">
+    <script src="~/js/main.js" defer></script>
+</head>
+<body>
+    <section class="auth-section">
+        <img src="~/assets/logo.svg" height="128px" alt="Guexit">
+        <div class="fast-mode">
+            <div class="container">
+                <h3>Start Fast!</h3>
+                @if (Model.View.VisibleExternalProviders.Any())
+                {
+                    var googleExternalLogin = Model.View.VisibleExternalProviders.FirstOrDefault(x => x.AuthenticationScheme == GoogleDefaults.AuthenticationScheme);
+                    var discordExternalLogin = Model.View.VisibleExternalProviders.FirstOrDefault(x => x.AuthenticationScheme == DiscordAuthenticationDefaults.AuthenticationScheme);
+                    var twitchExternalLogin = Model.View.VisibleExternalProviders.FirstOrDefault(x => x.AuthenticationScheme == TwitchAuthenticationDefaults.AuthenticationScheme);
 
-    <div class="m-3 text-center flex">
-        <img class="logo" src="~/guexit-logo.svg" alt="Guexit">
-    </div>
-    
-    <div class="row p-3">
-        @if (Model.View.VisibleExternalProviders.Any())
-        {
-            <div class="col-sm-12 divider-with-text mb-4">
-                <span class="divider-line"></span>
-                <span class="divider-text small">choose a way to log in</span>
-                <span class="divider-line"></span>
-            </div>
-            
-            <div class="col-sm-12 mb-3">
-                <div class="row g-2 ">
-                    @{
-                        var googleExternalLogin = Model.View.VisibleExternalProviders.FirstOrDefault(x => x.AuthenticationScheme == GoogleDefaults.AuthenticationScheme);
-                        var discordExternalLogin = Model.View.VisibleExternalProviders.FirstOrDefault(x => x.AuthenticationScheme == DiscordAuthenticationDefaults.AuthenticationScheme);
-                        var twitchExternalLogin = Model.View.VisibleExternalProviders.FirstOrDefault(x => x.AuthenticationScheme == TwitchAuthenticationDefaults.AuthenticationScheme);
-                    }
-
-                    @if (discordExternalLogin is not null)
+                    @if (googleExternalLogin != null)
                     {
-                        <div class="col-4">
-                            <a class="unstyled button primary-button bold-text btn-block discord-button social-button"
-                               asp-page="/ExternalLogin/Challenge"
-                               asp-route-scheme="@discordExternalLogin.AuthenticationScheme"
-                               asp-route-returnUrl="@Model.Input.ReturnUrl">
-                                <img src="~/icons/discord-icon.svg" alt="Discord" class="social-icon">
-                                @discordExternalLogin.DisplayName
-                            </a>
-                        </div>
+                        <a class="primary button"
+                           asp-page="/ExternalLogin/Challenge"
+                           asp-route-scheme="@googleExternalLogin.AuthenticationScheme"
+                           asp-route-returnUrl="@Model.Input.ReturnUrl">
+                            <img src="~/assets/google.svg" alt="">
+                            <span>Log in with Google</span>
+                        </a>
                     }
-
-                    @if (twitchExternalLogin is not null)
+                    @if (discordExternalLogin != null)
                     {
-                        <div class="col-4">
-                            <a class="unstyled button primary-button bold-text btn-block twitch-button social-button"
-                               asp-page="/ExternalLogin/Challenge"
-                               asp-route-scheme="@twitchExternalLogin.AuthenticationScheme"
-                               asp-route-returnUrl="@Model.Input.ReturnUrl">
-                                <img src="~/icons/twitch-icon.svg" alt="Twitch" class="social-icon">
-                                @twitchExternalLogin.DisplayName
-                            </a>
-                        </div>
+                        <a class="default button"
+                           asp-page="/ExternalLogin/Challenge"
+                           asp-route-scheme="@discordExternalLogin.AuthenticationScheme"
+                           asp-route-returnUrl="@Model.Input.ReturnUrl">
+                            <img src="~/assets/discord.svg" alt="">
+                            <span>Log in with Discord</span>
+                        </a>
                     }
-
-                    @if (googleExternalLogin is not null)
+                    @if (twitchExternalLogin != null)
                     {
-                        <div class="col-4">
-                            <a class="unstyled button primary-button bold-text btn-block google-button social-button"
-                               asp-page="/ExternalLogin/Challenge"
-                               asp-route-scheme="@googleExternalLogin.AuthenticationScheme"
-                               asp-route-returnUrl="@Model.Input.ReturnUrl">
-                                <img src="~/icons/google-icon.svg" alt="Google" class="social-icon">
-                                @googleExternalLogin.DisplayName
-                            </a>
-                        </div>
+                        <a class="default button"
+                           asp-page="/ExternalLogin/Challenge"
+                           asp-route-scheme="@twitchExternalLogin.AuthenticationScheme"
+                           asp-route-returnUrl="@Model.Input.ReturnUrl">
+                            <img src="~/assets/twitch.svg" alt="">
+                            <span>Log in with Twitch</span>
+                        </a>
                     }
-                </div>
+                }
+                <p style="text-align: center;">This method will create an account if you don’t have one yet 😁</p>
             </div>
-        }
-
-        @if (Model.View.EnableLocalLogin)
-        {
-            <partial name="_ValidationSummary"/>
-
-            <div class="col-sm-12 divider-with-text my-3">
-                <span class="divider-line"></span>
-                <span class="divider-text small">or continue with</span>
-                <span class="divider-line"></span>
+            <div class="separator">
+                <hr>
+                <p>or</p>
+                <hr>
             </div>
-
-            <div class="col-sm-12">
-                <form asp-page="/Account/Login/Index">
-                    <input type="hidden" asp-for="Input.ReturnUrl"/>
-
-                    <div class="form-group">
-                        <label asp-for="Input.Username">Email</label>
-                        <input class="form-control bold-text login-input" placeholder="Enter your email..." asp-for="Input.Username" autofocus>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Input.Password"></label>
-                        <input type="password" class="form-control bold-text login-input" placeholder="Enter your password..." asp-for="Input.Password" class="bold-text" autocomplete="off">
-                    </div>
-
-                    <div class="row g-2 mt-4">
-                        <div class="col-6">
-                            <button class="button primary-button bold-text btn-block" id="Button_Login" name="Input.Button" value="login">Log In</button>
-                        </div>
-                        <div class="col-6">
-                            <a class="unstyled button secondary-button bold-text btn-block"
-                               asp-page="/Account/Register"
-                               asp-route-ReturnUrl="@Model.Input.ReturnUrl">
-                                Sign Up
-                            </a>
-                        </div>
-                    </div>
-
-
-                    @if (Model.View.AllowRememberLogin)
-                    {
-                        <div class="form-group mt-3">
-                            <div class="form-check">
-                                <input class="form-check-input" asp-for="Input.RememberLogin">
-                                <label class="form-check-label bold-text small" asp-for="Input.RememberLogin">
-                                    Remember this device
-                                </label>
-                            </div>
-                        </div>
-                    }
-                </form>
+            <div class="second-options">
+                <a href="/Account/Login"><b>Log In</b> with your Guexit Account</a>
+                <a href="/Account/Register"><b>Create</b> a Guexit Account</a>
             </div>
-        }
-        
-        @if (!Model.View.EnableLocalLogin && !Model.View.VisibleExternalProviders.Any())
-        {
-            <div class="alert alert-warning">
-                <strong>Invalid login request</strong>
-                There are no login schemes configured for this request.
-            </div>
-        }
-    </div>
-</div>
+        </div>
+    </section>
+</body>
+</html>
