@@ -64,8 +64,8 @@
                 <hr>
             </div>
             <div class="second-options">
-                <a href="/Account/Login"><b>Log In</b> with your Guexit Account</a>
-                <a href="/Account/Register"><b>Create</b> a Guexit Account</a>
+                <a asp-page="/Account/LoginWithEmail" asp-route-ReturnUrl="@Model.Input.ReturnUrl"><b>Log In</b> with your Guexit Account</a>
+                <a asp-page="/Account/Register" asp-route-ReturnUrl="@Model.Input.ReturnUrl"><b>Create</b> a Guexit Account</a>
             </div>
         </div>
     </section>
