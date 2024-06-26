@@ -6,6 +6,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,50 +14,48 @@
     <link rel="stylesheet" href="~/css/main.css">
     <script src="~/js/main.js" defer></script>
 </head>
+
 <body>
     <section class="auth-section">
         <img src="~/assets/logo.svg" height="128px" alt="Guexit">
         <div class="fast-mode">
             <div class="login-container">
                 <h3>Start Fast!</h3>
-                    @{
-                        var googleExternalLogin = Model.ExternalLogins.FirstOrDefault(x => x.Name == GoogleDefaults.AuthenticationScheme);
-                        var discordExternalLogin = Model.ExternalLogins.FirstOrDefault(x => x.Name == DiscordAuthenticationDefaults.AuthenticationScheme);
-                        var twitchExternalLogin = Model.ExternalLogins.FirstOrDefault(x => x.Name == TwitchAuthenticationDefaults.AuthenticationScheme);
-                    }
+                @{
+                    var googleExternalLogin = Model.ExternalLogins.FirstOrDefault(x => x.Name ==
+                    GoogleDefaults.AuthenticationScheme);
+                    var discordExternalLogin = Model.ExternalLogins.FirstOrDefault(x => x.Name ==
+                    DiscordAuthenticationDefaults.AuthenticationScheme);
+                    var twitchExternalLogin = Model.ExternalLogins.FirstOrDefault(x => x.Name ==
+                    TwitchAuthenticationDefaults.AuthenticationScheme);
+                }
 
-                    @if (googleExternalLogin is not null)
-                    {
-                        <a class="primary button"
-                           asp-page="/ExternalLogin/Challenge"
-                           asp-route-scheme="@googleExternalLogin.Name"
-                           asp-route-returnUrl="@Model.ReturnUrl">
-                            <img src="~/assets/google.svg" alt="">
-                            <span>Log in with Google</span>
-                        </a>
-                    }
+                @if (googleExternalLogin is not null)
+                {
+                    <a class="primary button" asp-page="/ExternalLogin/Challenge"
+                        asp-route-scheme="@googleExternalLogin.Name" asp-route-returnUrl="@Model.ReturnUrl">
+                        <img src="~/assets/google.svg" alt="">
+                        <span>Log in with Google</span>
+                    </a>
+                }
 
-                    @if (discordExternalLogin is not null)
-                    {
-                        <a class="default button"
-                           asp-page="/ExternalLogin/Challenge"
-                           asp-route-scheme="@discordExternalLogin.Name"
-                           asp-route-returnUrl="@Model.ReturnUrl">
-                            <img src="~/assets/discord.svg" alt="">
-                            <span>Log in with Discord</span>
-                        </a>
-                    }
+                @if (discordExternalLogin is not null)
+                {
+                    <a class="default button" asp-page="/ExternalLogin/Challenge"
+                        asp-route-scheme="@discordExternalLogin.Name" asp-route-returnUrl="@Model.ReturnUrl">
+                        <img src="~/assets/discord.svg" alt="">
+                        <span>Log in with Discord</span>
+                    </a>
+                }
 
-                    @if (twitchExternalLogin is not null)
-                    {
-                        <a class="default button"
-                           asp-page="/ExternalLogin/Challenge"
-                           asp-route-scheme="@twitchExternalLogin.Name"
-                           asp-route-returnUrl="@Model.ReturnUrl">
-                            <img src="~/assets/twitch.svg" alt="">
-                            <span>Log in with Twitch</span>
-                        </a>
-                    }
+                @if (twitchExternalLogin is not null)
+                {
+                    <a class="default button" asp-page="/ExternalLogin/Challenge"
+                        asp-route-scheme="@twitchExternalLogin.Name" asp-route-returnUrl="@Model.ReturnUrl">
+                        <img src="~/assets/twitch.svg" alt="">
+                        <span>Log in with Twitch</span>
+                    </a>
+                }
                 <p style="text-align: center;">This method will create an account if you don’t have one yet 😁</p>
             </div>
             <div class="separator">
@@ -65,21 +64,24 @@
                 <hr>
             </div>
             <form asp-page="/Account/LoginWithEmail" method="post" class="auth-form">
-                <input type="hidden" asp-for="ReturnUrl" value="@Model.ReturnUrl"/>
+                <input type="hidden" asp-for="ReturnUrl" value="@Model.ReturnUrl" />
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                 <div class="form-floating">
                     <label asp-for="Input.Email">Email</label>
-                    <input asp-for="Input.Email" class="form-control bold-text login-input mb-3" autocomplete="username" aria-required="true" placeholder="Enter your email..."/>
+                    <input asp-for="Input.Email" class="form-control bold-text login-input mb-3" autocomplete="username"
+                        aria-required="true" placeholder="Enter your email..." />
                     <span asp-validation-for="Input.Email" class="text-danger small"></span>
                 </div>
                 <div class="form-floating mb-5">
                     <label asp-for="Input.Password">Password</label>
-                    <input asp-for="Input.Password" class="form-control bold-text login-input mb-3" autocomplete="new-password" aria-required="true" placeholder="Enter your password..."/>
+                    <input asp-for="Input.Password" class="form-control bold-text login-input mb-3"
+                        autocomplete="new-password" aria-required="true" placeholder="Enter your password..." />
                     <span asp-validation-for="Input.Password" class="text-danger small"></span>
                 </div>
-                <button id="loginSubmit" type="submit" class="mt-2 button primary-button bold-text btn-block">Log In</button>
+                <a id="loginSubmit" type="submit" class="default button">Log In</a>
             </form>
         </div>
     </section>
 </body>
+
 </html>
