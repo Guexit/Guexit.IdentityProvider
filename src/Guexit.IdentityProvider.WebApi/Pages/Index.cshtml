@@ -1,35 +1,47 @@
 @page
 @model Guexit.IdentityProvider.WebApi.Pages.Index
 
-<div class="welcome-page">
-    <h1>
-        <img src="~/duende-logo.svg" class="logo">
-        Welcome to Guexit
-        <small class="text-muted">(version @Model.Version)</small>
-    </h1>
-
-    <ul>
-        <li>
-            IdentityServer publishes a
-            <a href="~/.well-known/openid-configuration">discovery document</a>
-            where you can find metadata and links to all the endpoints, key material, etc.
-        </li>
-        <li>
-            Click <a href="~/diagnostics">here</a> to see the claims for your current session.
-        </li>
-        <li>
-            Click <a href="~/grants">here</a> to manage your stored grants.
-        </li>
-        <li>
-            Click <a href="~/serversidesessions">here</a> to view the server side sessions.
-        </li>
-        <li>
-            Click <a href="~/ciba/all">here</a> to view your pending CIBA login requests.
-        </li>
-        <li>
-            Here are links to the
-            <a href="https://github.com/duendesoftware/IdentityServer">source code repository</a>,
-            and <a href="https://github.com/duendesoftware/samples">ready to use samples</a>.
-        </li>
-    </ul>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Guexit</title>
+    <link rel="stylesheet" href="~/css/main.css">
+</head>
+<body>
+    <section class="auth-section">
+        <img src="~/assets/logo.svg" height="128px" alt="Guexit">
+        <div class="login-container">
+            <h1>
+                Welcome to Guexit
+                <small class="text-muted">(version @Model.Version)</small>
+            </h1>
+            <ul>
+                <li>
+                    IdentityServer publishes a
+                    <a href="~/.well-known/openid-configuration">discovery document</a>
+                    where you can find metadata and links to all the endpoints, key material, etc.
+                </li>
+                <li>
+                    Click <a href="~/diagnostics">here</a> to see the claims for your current session.
+                </li>
+                <li>
+                    Click <a href="~/grants">here</a> to manage your stored grants.
+                </li>
+                <li>
+                    Click <a href="~/serversidesessions">here</a> to view the server side sessions.
+                </li>
+                <li>
+                    Click <a href="~/ciba/all">here</a> to view your pending CIBA login requests.
+                </li>
+                <li>
+                    Here are links to the
+                    <a href="https://github.com/duendesoftware/IdentityServer">source code repository</a>,
+                    and <a href="https://github.com/duendesoftware/samples">ready to use samples</a>.
+                </li>
+            </ul>
+        </div>
+    </section>
+</body>
+</html>

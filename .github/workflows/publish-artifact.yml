@@ -53,6 +53,20 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh release create ${{steps.calculate-new-version.outputs.new-version}} --generate-notes --latest --title v${{steps.calculate-new-version.outputs.new-version}} --target ${{ needs.build-and-run-tests.outputs.commit-hash }}  
+
+      - name: Get Release Notes and Send Notification to Discord Release Channel
+        run: |
+          VERSION=${{ steps.calculate-new-version.outputs.new-version }}
+          TAG=${VERSION#v}
+          RELEASE_NOTES_JSON=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          "https://api.github.com/repos/Guexit/Guexit.IdentityProvider/releases/tags/$TAG" | jq -r ".body")
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d "$(jq -n --arg rn "$RELEASE_NOTES_JSON" --arg version "$VERSION" '{content: ("**Guexit Identity Provider " + $version + "**\n" + $rn)}')" \
+          ${{ secrets.DISCORD_WEBHOOK }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         
   deploy-container-app:
       name: Deploy Container App

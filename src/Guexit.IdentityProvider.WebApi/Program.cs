@@ -47,6 +47,12 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline';");
+    await next();
+});
+
 app.UseCookiePolicy(new CookiePolicyOptions { Secure = CookieSecurePolicy.Always });
 app.UseHttpsRedirection();
 app.UseCors();

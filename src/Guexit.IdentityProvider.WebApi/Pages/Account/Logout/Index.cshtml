@@ -1,17 +1,30 @@
 @page
 @model Guexit.IdentityProvider.WebApi.Pages.Account.Logout.Index
 
-<div class="logout-page">
-    <div class="lead">
-        <h1>Logout</h1>
-        <p>Would you like to logout of IdentityServer?</p>
-    </div>
-
-    <form asp-page="/Account/Logout/Index">
-        <input type="hidden" name="logoutId" value="@Model.LogoutId"  />
-        
-        <div class="form-group">
-            <button class="btn btn-primary">Yes</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout - Guexit</title>
+    <link rel="stylesheet" href="~/css/main.css">
+    <script src="~/js/main.js"></script>
+</head>
+<body>
+    <section class="auth-section">
+        <img src="~/assets/logo.svg" height="128px" alt="Guexit">
+        <div class="fast-mode">
+            <div class="login-container">
+                <h3>Logout</h3>
+                <p>Would you like to logout of IdentityServer?</p>
+                <form asp-page="/Account/Logout/Index">
+                    <input type="hidden" name="logoutId" value="@Model.LogoutId"/>
+                    <div class="form-group">
+                        <button class="primary button">Yes</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </form>
-</div>
+    </section>
+</body>
+</html>
