@@ -2,14 +2,16 @@
 @using AspNet.Security.OAuth.Discord
 @using AspNet.Security.OAuth.Twitch
 @using Microsoft.AspNetCore.Authentication.Google
+@using Microsoft.Extensions.Localization
 @model Guexit.IdentityProvider.WebApi.Pages.Account.RegisterModel
+@inject IStringLocalizer<Guexit.IdentityProvider.WebApi.Pages.Account.RegisterModel> Localizer
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Guexit</title>
+    <title>@Localizer["RegisterPageTitle"]</title>
     <link rel="stylesheet" href="~/css/main.css">
     <script src="~/js/main.js" defer></script>
 </head>
@@ -18,72 +20,72 @@
         <img src="~/assets/logo.svg" height="128px" alt="Guexit">
         <div class="fast-mode">
             <div class="login-container">
-                <h3>Start Fast!</h3>
-                    @{
-                        var googleExternalLogin = Model.ExternalLogins.FirstOrDefault(x => x.Name == GoogleDefaults.AuthenticationScheme);
-                        var discordExternalLogin = Model.ExternalLogins.FirstOrDefault(x => x.Name == DiscordAuthenticationDefaults.AuthenticationScheme);
-                        var twitchExternalLogin = Model.ExternalLogins.FirstOrDefault(x => x.Name == TwitchAuthenticationDefaults.AuthenticationScheme);
-                    }
+                <h3>@Localizer["StartFast"]</h3>
+                @{
+                    var googleExternalLogin = Model.ExternalLogins.FirstOrDefault(x => x.Name == GoogleDefaults.AuthenticationScheme);
+                    var discordExternalLogin = Model.ExternalLogins.FirstOrDefault(x => x.Name == DiscordAuthenticationDefaults.AuthenticationScheme);
+                    var twitchExternalLogin = Model.ExternalLogins.FirstOrDefault(x => x.Name == TwitchAuthenticationDefaults.AuthenticationScheme);
+                }
 
-                    @if (googleExternalLogin is not null)
-                    {
-                        <a class="primary button"
-                           asp-page="/ExternalLogin/Challenge"
-                           asp-route-scheme="@googleExternalLogin.Name"
-                           asp-route-returnUrl="@Model.ReturnUrl">
-                            <img src="~/assets/google.svg" alt="">
-                            <span>Register with Google</span>
-                        </a>
-                    }
+                @if (googleExternalLogin is not null)
+                {
+                    <a class="primary button"
+                       asp-page="/ExternalLogin/Challenge"
+                       asp-route-scheme="@googleExternalLogin.Name"
+                       asp-route-returnUrl="@Model.ReturnUrl">
+                        <img src="~/assets/google.svg" alt="">
+                        <span>@Localizer["RegisterWithGoogle"]</span>
+                    </a>
+                }
 
-                    @if (discordExternalLogin is not null)
-                    {
-                        <a class="default button"
-                           asp-page="/ExternalLogin/Challenge"
-                           asp-route-scheme="@discordExternalLogin.Name"
-                           asp-route-returnUrl="@Model.ReturnUrl">
-                            <img src="~/assets/discord.svg" alt="">
-                            <span>Register with Discord</span>
-                        </a>
-                    }
+                @if (discordExternalLogin is not null)
+                {
+                    <a class="default button"
+                       asp-page="/ExternalLogin/Challenge"
+                       asp-route-scheme="@discordExternalLogin.Name"
+                       asp-route-returnUrl="@Model.ReturnUrl">
+                        <img src="~/assets/discord.svg" alt="">
+                        <span>@Localizer["RegisterWithDiscord"]</span>
+                    </a>
+                }
 
-                    @if (twitchExternalLogin is not null)
-                    {
-                        <a class="default button"
-                           asp-page="/ExternalLogin/Challenge"
-                           asp-route-scheme="@twitchExternalLogin.Name"
-                           asp-route-returnUrl="@Model.ReturnUrl">
-                            <img src="~/assets/twitch.svg" alt="">
-                            <span>Register with Twitch</span>
-                        </a>
-                    }
+                @if (twitchExternalLogin is not null)
+                {
+                    <a class="default button"
+                       asp-page="/ExternalLogin/Challenge"
+                       asp-route-scheme="@twitchExternalLogin.Name"
+                       asp-route-returnUrl="@Model.ReturnUrl">
+                        <img src="~/assets/twitch.svg" alt="">
+                        <span>@Localizer["RegisterWithTwitch"]</span>
+                    </a>
+                }
 
-                <p style="text-align: center;">This method will create an account if you don’t have one yet 😁</p>
+                <p style="text-align: center;">@Localizer["CreateAccountNote"]</p>
             </div>
             <div class="separator">
                 <hr>
-                <p>or</p>
+                <p>@Localizer["Or"]</p>
                 <hr>
             </div>
             <form asp-page="/Account/Register" class="auth-form">
                 <input type="hidden" asp-for="ReturnUrl"/>
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                 <div class="form-floating">
-                    <label asp-for="Input.Email">Email</label>
-                    <input asp-for="Input.Email" class="form-control bold-text login-input mb-3" autocomplete="username" aria-required="true" placeholder="Enter your email..."/>
+                    <label asp-for="Input.Email">@Localizer["Email"]</label>
+                    <input asp-for="Input.Email" class="form-control bold-text login-input mb-3" autocomplete="username" aria-required="true" placeholder="@Localizer["EnterYourEmail"]"/>
                     <span asp-validation-for="Input.Email" class="text-danger small"></span>
                 </div>
                 <div class="form-floating">
-                    <label asp-for="Input.Password">Password</label>
-                    <input asp-for="Input.Password" class="form-control bold-text login-input mb-3" autocomplete="new-password" aria-required="true" placeholder="Enter your password..."/>
+                    <label asp-for="Input.Password">@Localizer["Password"]</label>
+                    <input asp-for="Input.Password" class="form-control bold-text login-input mb-3" autocomplete="new-password" aria-required="true" placeholder="@Localizer["EnterYourPassword"]"/>
                     <span asp-validation-for="Input.Password" class="text-danger small"></span>
                 </div>
                 <div class="form-floating mb-5">
-                    <label asp-for="Input.ConfirmPassword">Confirm Password</label>
-                    <input asp-for="Input.ConfirmPassword" class="form-control bold-text login-input mb-3" autocomplete="new-password" aria-required="true" placeholder="Repeat your password..."/>
+                    <label asp-for="Input.ConfirmPassword">@Localizer["ConfirmPassword"]</label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control bold-text login-input mb-3" autocomplete="new-password" aria-required="true" placeholder="@Localizer["RepeatYourPassword"]"/>
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger small"></span>
                 </div>
-                <button id="registerSubmit" type="submit" class="default button">Register</button>
+                <button id="registerSubmit" type="submit" class="default button">@Localizer["Register"]</button>
             </form>
         </div>
     </section>

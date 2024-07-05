@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+<data name="LoginPageTitle" xml:space="preserve">
+<value>Login - Guexit</value>
+</data>
+<data name="StartFast" xml:space="preserve">
+<value>Schnell Starten!</value>
+</data>
+<data name="LoginWithGoogle" xml:space="preserve">
+<value>Mit Google anmelden</value>
+</data>
+<data name="LoginWithDiscord" xml:space="preserve">
+<value>Mit Discord anmelden</value>
+</data>
+<data name="LoginWithTwitch" xml:space="preserve">
+<value>Mit Twitch anmelden</value>
+</data>
+<data name="CreateAccountNote" xml:space="preserve">
+<value>Diese Methode erstellt ein Konto, wenn du noch keins hast 😁</value>
+</data>
+<data name="Or" xml:space="preserve">
+<value>oder</value>
+</data>
+<data name="LoginWithEmail_bold" xml:space="preserve">
+<value>Melde dich an </value>
+</data>
+<data name="LoginWithEmail" xml:space="preserve">
+<value>mit deinem Guexit-Konto</value>
+</data>
+<data name="CreateAccount_bold" xml:space="preserve">
+<value>Erstelle </value>
+</data>
+<data name="CreateAccount" xml:space="preserve">
+<value>ein Guexit-Konto</value>
+</data>
+</root>

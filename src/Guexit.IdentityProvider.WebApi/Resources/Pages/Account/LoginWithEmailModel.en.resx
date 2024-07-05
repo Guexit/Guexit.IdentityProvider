@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="LoginPageTitle" xml:space="preserve">
+    <value>Login - Guexit</value>
+  </data>
+  <data name="StartFast" xml:space="preserve">
+    <value>Start Fast!</value>
+  </data>
+  <data name="LoginWithGoogle" xml:space="preserve">
+    <value>Log in with Google</value>
+  </data>
+  <data name="LoginWithDiscord" xml:space="preserve">
+    <value>Log in with Discord</value>
+  </data>
+  <data name="LoginWithTwitch" xml:space="preserve">
+    <value>Log in with Twitch</value>
+  </data>
+  <data name="CreateAccountNote" xml:space="preserve">
+    <value>This method will create an account if you don't have one yet 😁</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>or</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EnterYourEmail" xml:space="preserve">
+    <value>Enter your email...</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="EnterYourPassword" xml:space="preserve">
+    <value>Enter your password...</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Log In</value>
+  </data>
+  <data name="InvalidLoginAttempt" xml:space="preserve">
+    <value>Invalid login attempt.</value>
+  </data>
+</root>

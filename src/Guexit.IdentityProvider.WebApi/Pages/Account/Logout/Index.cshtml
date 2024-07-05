@@ -1,12 +1,14 @@
 @page
+@using Microsoft.Extensions.Localization
 @model Guexit.IdentityProvider.WebApi.Pages.Account.Logout.Index
+@inject IStringLocalizer<Guexit.IdentityProvider.WebApi.Pages.Account.Logout.Index> Localizer
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logout - Guexit</title>
+    <title>@Localizer["LogoutPageTitle"]</title>
     <link rel="stylesheet" href="~/css/main.css">
     <script src="~/js/main.js"></script>
 </head>
@@ -15,12 +17,12 @@
         <img src="~/assets/logo.svg" height="128px" alt="Guexit">
         <div class="fast-mode">
             <div class="login-container">
-                <h3>Logout</h3>
-                <p>Would you like to logout of IdentityServer?</p>
+                <h3>@Localizer["Logout"]</h3>
+                <p>@Localizer["LogoutPrompt"]</p>
                 <form asp-page="/Account/Logout/Index">
                     <input type="hidden" name="logoutId" value="@Model.LogoutId"/>
                     <div class="form-group">
-                        <button class="primary button">Yes</button>
+                        <button class="primary button">@Localizer["Yes"]</button>
                     </div>
                 </form>
             </div>

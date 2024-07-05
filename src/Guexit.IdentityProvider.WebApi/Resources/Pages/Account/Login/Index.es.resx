@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="LoginPageTitle" xml:space="preserve">
+    <value>Iniciar Sesión - Guexit</value>
+  </data>
+  <data name="StartFast" xml:space="preserve">
+    <value>¡Comienza Rápido!</value>
+  </data>
+  <data name="LoginWithGoogle" xml:space="preserve">
+    <value>Iniciar sesión con Google</value>
+  </data>
+  <data name="LoginWithDiscord" xml:space="preserve">
+    <value>Iniciar sesión con Discord</value>
+  </data>
+  <data name="LoginWithTwitch" xml:space="preserve">
+    <value>Iniciar sesión con Twitch</value>
+  </data>
+  <data name="CreateAccountNote" xml:space="preserve">
+    <value>Este método creará una cuenta si aún no tienes una 😁</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>o</value>
+  </data>
+  <data name="LoginWithEmail_bold" xml:space="preserve">
+    <value>Inicia sesión </value>
+  </data>
+  <data name="LoginWithEmail" xml:space="preserve">
+    <value>con tu cuenta de Guexit</value>
+  </data>
+  <data name="CreateAccount_bold" xml:space="preserve">
+    <value>Crea </value>
+  </data>
+  <data name="CreateAccount" xml:space="preserve">
+    <value>una cuenta de Guexit</value>
+  </data>
+</root>

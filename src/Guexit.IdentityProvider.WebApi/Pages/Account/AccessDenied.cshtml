@@ -1,10 +1,12 @@
 @page
+@using Microsoft.Extensions.Localization
 @model Guexit.IdentityProvider.WebApi.Pages.Account.AccessDeniedModel
+@inject IStringLocalizer<Guexit.IdentityProvider.WebApi.Pages.Account.AccessDeniedModel> Localizer
 @{
 }
 <div class="row">
     <div class="col">
-        <h1>Access Denied</h1>
-        <p>You do not have permission to access that resource.</p>
+        <h1>@Localizer["AccessDeniedTitle"]</h1>
+        <p>@Localizer["AccessDeniedMessage"]</p>
     </div>
 </div>

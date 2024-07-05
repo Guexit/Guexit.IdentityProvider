@@ -1,7 +1,9 @@
 using Duende.IdentityServer;
 using Guexit.IdentityProvider.Persistence;
 using Guexit.IdentityProvider.WebApi.DependencyInjection;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,9 @@ builder.Services.AddIdentityServerAndOperationalData(builder.Configuration, buil
 builder.Services.AddAuthorization();
 builder.Services.AddRazorPages();
 builder.Services.AddCors(opt => opt.AddDefaultPolicy(policy => policy.AllowAnyOrigin()));
+
+// Add localization services
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
 builder.Services.AddAuthentication()
     .AddGoogle(options =>
@@ -38,6 +43,19 @@ builder.Services.AddAuthentication()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Configure supported cultures
+var supportedCultures = new[] { "en", "es", "de", "fr", "pt" };
+
+// Add localization options to the service collection
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    options.DefaultRequestCulture = new RequestCulture("en");
+    options.SupportedCultures = supportedCultures.Select(c => new CultureInfo(c)).ToList();
+    options.SupportedUICultures = supportedCultures.Select(c => new CultureInfo(c)).ToList();
+    options.FallBackToParentCultures = true; // Fallback to parent culture if specific culture is not found
+    options.FallBackToParentUICultures = true;
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -49,9 +67,11 @@ if (app.Environment.IsDevelopment())
 
 app.Use(async (context, next) =>
 {
-    context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline';");
+    context.Response.Headers.Append("Content-Security-Policy", "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline';");
     await next();
 });
+
+app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 
 app.UseCookiePolicy(new CookiePolicyOptions { Secure = CookieSecurePolicy.Always });
 app.UseHttpsRedirection();

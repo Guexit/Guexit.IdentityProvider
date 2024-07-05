@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+<data name="LogoutPageTitle" xml:space="preserve">
+<value>Logout - Guexit</value>
+</data>
+<data name="Logout" xml:space="preserve">
+<value>Logout</value>
+</data>
+<data name="LogoutPrompt" xml:space="preserve">
+<value>Gostaria de sair do IdentityServer?</value>
+</data>
+<data name="Yes" xml:space="preserve">
+<value>Sim</value>
+</data>
+</root>

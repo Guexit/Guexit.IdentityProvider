@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="LogoutPageTitle" xml:space="preserve">
+    <value>Cerrar sesión - Guexit</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Cerrar sesión</value>
+  </data>
+  <data name="LogoutPrompt" xml:space="preserve">
+    <value>¿Te gustaría cerrar sesión en IdentityServer?</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+</root>

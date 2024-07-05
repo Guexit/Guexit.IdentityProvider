@@ -1,17 +1,19 @@
 @page
+@using Microsoft.Extensions.Localization
 @model Guexit.IdentityProvider.WebApi.Pages.Account.Logout.LoggedOut
+@inject IStringLocalizer<Guexit.IdentityProvider.WebApi.Pages.Account.Logout.LoggedOut> Localizer
 
 <div class="logged-out-page">
     <h1>
-        Sayonara, baby <br>
-        <small>You are now logged out</small>
+        @Localizer["Sayonara"] <br>
+        <small>@Localizer["LoggedOutMessage"]</small>
     </h1>
 
     @if (Model.View.PostLogoutRedirectUri != null)
     {
         <div>
-            Click <a class="PostLogoutRedirectUri" href="@Model.View.PostLogoutRedirectUri">here</a> to return to the
-            <span>@Model.View.ClientName</span> application.
+            @Localizer["ClickHere"] <a class="PostLogoutRedirectUri" href="@Model.View.PostLogoutRedirectUri">@Localizer["Here"]</a> @Localizer["ToReturnToThe"]
+            <span>@Model.View.ClientName</span> @Localizer["Application"].
         </div>
     }
 

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Localization;
 using System.ComponentModel.DataAnnotations;
 
 namespace Guexit.IdentityProvider.WebApi.Pages.Account;
@@ -18,17 +19,20 @@ public class LoginWithEmailModel : PageModel
     private readonly IEventService _events;
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly UserManager<IdentityUser> _userManager;
+    private readonly IStringLocalizer<LoginWithEmailModel> _localizer;
 
     public LoginWithEmailModel(
         IIdentityServerInteractionService interaction,
         IEventService events,
         SignInManager<IdentityUser> signInManager,
-        UserManager<IdentityUser> userManager)
+        UserManager<IdentityUser> userManager,
+        IStringLocalizer<LoginWithEmailModel> localizer)
     {
         _interaction = interaction;
         _events = events;
         _signInManager = signInManager;
         _userManager = userManager;
+        _localizer = localizer;
     }
 
     [BindProperty]
@@ -106,7 +110,7 @@ public class LoginWithEmailModel : PageModel
             }
 
             await _events.RaiseAsync(new UserLoginFailureEvent(Input.Email, "invalid credentials", clientId: context?.Client.ClientId));
-            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+            ModelState.AddModelError(string.Empty, _localizer["InvalidLoginAttempt"]);
         }
 
         // If we got this far, something failed, redisplay form
