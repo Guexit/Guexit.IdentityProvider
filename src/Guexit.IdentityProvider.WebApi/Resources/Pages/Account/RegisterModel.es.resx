@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="RegisterPageTitle" xml:space="preserve">
+    <value>Registro - Guexit</value>
+  </data>
+  <data name="StartFast" xml:space="preserve">
+    <value>¡Comienza Rápido!</value>
+  </data>
+  <data name="RegisterWithGoogle" xml:space="preserve">
+    <value>Regístrate con Google</value>
+  </data>
+  <data name="RegisterWithDiscord" xml:space="preserve">
+    <value>Regístrate con Discord</value>
+  </data>
+  <data name="RegisterWithTwitch" xml:space="preserve">
+    <value>Regístrate con Twitch</value>
+  </data>
+  <data name="CreateAccountNote" xml:space="preserve">
+    <value>Este método creará una cuenta si aún no tienes una 😁</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>o</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EnterYourEmail" xml:space="preserve">
+    <value>Escribe tu email...</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="EnterYourPassword" xml:space="preserve">
+    <value>Escribe tu contraseña...</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirma tu contraseña</value>
+  </data>
+  <data name="RepeatYourPassword" xml:space="preserve">
+    <value>Repite tu contraseña...</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Registrarse</value>
+  </data>
+  <data name="EmailAlreadyTaken" xml:space="preserve">
+    <value>El email '{0}' ya existe.</value>
+  </data>
+</root>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Localization;
 
 namespace Guexit.IdentityProvider.WebApi.Pages.Account.Login;
 
@@ -20,6 +21,7 @@ public class Index : PageModel
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly IAuthenticationSchemeProvider _schemeProvider;
     private readonly IIdentityProviderStore _identityProviderStore;
+    private readonly IStringLocalizer<Index> _localizer;
 
     public ViewModel View { get; set; }
 
@@ -32,7 +34,8 @@ public class Index : PageModel
         IIdentityProviderStore identityProviderStore,
         IEventService events,
         UserManager<IdentityUser> userManager,
-        SignInManager<IdentityUser> signInManager)
+        SignInManager<IdentityUser> signInManager,
+        IStringLocalizer<Index> localizer)
     {
         _interaction = interaction;
         _schemeProvider = schemeProvider;
@@ -40,6 +43,7 @@ public class Index : PageModel
         _events = events;
         _userManager = userManager;
         _signInManager = signInManager;
+        _localizer = localizer;
     }
 
     public async Task<IActionResult> OnGet(string returnUrl)
@@ -123,7 +127,7 @@ public class Index : PageModel
             }
 
             await _events.RaiseAsync(new UserLoginFailureEvent(Input.Username, "invalid credentials", clientId: context?.Client.ClientId));
-            ModelState.AddModelError(string.Empty, LoginOptions.InvalidCredentialsErrorMessage);
+            ModelState.AddModelError(string.Empty, _localizer["InvalidCredentialsErrorMessage"]);
         }
 
         // something went wrong, show form with error
@@ -169,15 +173,14 @@ public class Index : PageModel
                 AuthenticationScheme = x.Name
             }).ToList();
 
-        var dyanmicSchemes = (await _identityProviderStore.GetAllSchemeNamesAsync())
+        var dynamicSchemes = (await _identityProviderStore.GetAllSchemeNamesAsync())
             .Where(x => x.Enabled)
             .Select(x => new ViewModel.ExternalProvider
             {
                 AuthenticationScheme = x.Scheme,
                 DisplayName = x.DisplayName
             });
-        providers.AddRange(dyanmicSchemes);
-
+        providers.AddRange(dynamicSchemes);
 
         var allowLocal = true;
         var client = context?.Client;

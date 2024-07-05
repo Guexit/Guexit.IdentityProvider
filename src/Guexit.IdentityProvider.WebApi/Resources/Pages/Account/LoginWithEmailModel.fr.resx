@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+<data name="LoginPageTitle" xml:space="preserve">
+<value>Connexion - Guexit</value>
+</data>
+<data name="StartFast" xml:space="preserve">
+<value>Commencez Rapidement!</value>
+</data>
+<data name="LoginWithGoogle" xml:space="preserve">
+<value>Connectez-vous avec Google</value>
+</data>
+<data name="LoginWithDiscord" xml:space="preserve">
+<value>Connectez-vous avec Discord</value>
+</data>
+<data name="LoginWithTwitch" xml:space="preserve">
+<value>Connectez-vous avec Twitch</value>
+</data>
+<data name="CreateAccountNote" xml:space="preserve">
+<value>Ce moyen créera un compte si vous n'en avez pas encore un 😁</value>
+</data>
+<data name="Or" xml:space="preserve">
+<value>ou</value>
+</data>
+<data name="Email" xml:space="preserve">
+<value>Email</value>
+</data>
+<data name="EnterYourEmail" xml:space="preserve">
+<value>Entrez votre email...</value>
+</data>
+<data name="Password" xml:space="preserve">
+<value>Mot de passe</value>
+</data>
+<data name="EnterYourPassword" xml:space="preserve">
+<value>Entrez votre mot de passe...</value>
+</data>
+<data name="Login" xml:space="preserve">
+<value>Connexion</value>
+</data>
+<data name="InvalidLoginAttempt" xml:space="preserve">
+<value>Tentative de connexion invalide.</value>
+</data>
+</root>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+<data name="Sayonara" xml:space="preserve">
+<value>Sayonara, baby</value>
+</data>
+<data name="LoggedOutMessage" xml:space="preserve">
+<value>Vous êtes maintenant déconnecté</value>
+</data>
+<data name="ClickHere" xml:space="preserve">
+<value>Cliquez</value>
+</data>
+<data name="Here" xml:space="preserve">
+<value>ici</value>
+</data>
+<data name="ToReturnToThe" xml:space="preserve">
+<value>pour retourner à l'application</value>
+</data>
+<data name="Application" xml:space="preserve">
+<value>application</value>
+</data>
+</root>

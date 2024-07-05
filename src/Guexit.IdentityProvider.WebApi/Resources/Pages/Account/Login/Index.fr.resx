@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+<data name="LoginPageTitle" xml:space="preserve">
+<value>Connexion - Guexit</value>
+</data>
+<data name="StartFast" xml:space="preserve">
+<value>Commencez Rapidement!</value>
+</data>
+<data name="LoginWithGoogle" xml:space="preserve">
+<value>Connectez-vous avec Google</value>
+</data>
+<data name="LoginWithDiscord" xml:space="preserve">
+<value>Connectez-vous avec Discord</value>
+</data>
+<data name="LoginWithTwitch" xml:space="preserve">
+<value>Connectez-vous avec Twitch</value>
+</data>
+<data name="CreateAccountNote" xml:space="preserve">
+<value>Ce moyen créera un compte si vous n'en avez pas encore un 😁</value>
+</data>
+<data name="Or" xml:space="preserve">
+<value>ou</value>
+</data>
+<data name="LoginWithEmail_bold" xml:space="preserve">
+<value>Connectez-vous </value>
+</data>
+<data name="LoginWithEmail" xml:space="preserve">
+<value>avec votre compte Guexit</value>
+</data>
+<data name="CreateAccount_bold" xml:space="preserve">
+<value>Créez </value>
+</data>
+<data name="CreateAccount" xml:space="preserve">
+<value>un compte Guexit</value>
+</data>
+</root>
